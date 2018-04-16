@@ -17,16 +17,17 @@
 package cut.cis352.coin;
 
 public class Transaction {
-
+    private int id;
     private double moneyInserted;
     private final double price;
     private double change;
+    private boolean canceled;
 
     public Transaction(double price) {
         this.price = price;
-        System.out.println("Price: " + price);
         this.moneyInserted = 0.0;
         this.change = 0.0;
+        this.canceled = false;
     }
 
     public boolean onCoinInserted(double coinValue) {
@@ -44,10 +45,22 @@ public class Transaction {
 
     public void cancel() {
         change = moneyInserted;
+        canceled = true;
     }
 
+    public boolean isCanceled() {
+        return canceled;
+    }
 
     public double getChange() {
         return change;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

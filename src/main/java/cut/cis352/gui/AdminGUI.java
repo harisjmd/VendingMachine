@@ -78,9 +78,9 @@ public class AdminGUI extends JFrame implements WindowListener {
         constraints.anchor = GridBagConstraints.PAGE_START;
         constraints.gridx = 0;
         constraints.gridy = 0;
-        controller.getStorage().forEach(productStorage -> {
+        controller.getStorage().values().forEach(productStorage -> {
 
-            productsStoragePanel.add(new JLabel(String.valueOf(productStorage.getId()) + ": " + productStorage.getProduct().getName() + " - " + productStorage.getQuantity()), constraints);
+            productsStoragePanel.add(new JLabel(String.valueOf(productStorage.getId()) + ": " + controller.getProducts().get(productStorage.getProduct()).getName() + " - " + productStorage.getQuantity()), constraints);
             constraints.gridy++;
 //            productsStoragePanel.add(temp);
         });

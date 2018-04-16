@@ -16,6 +16,7 @@
 
 package cut.cis352.gui;
 
+import cut.cis352.coin.Coin;
 import cut.cis352.coin.OnActionCallback;
 
 import javax.imageio.ImageIO;
@@ -25,19 +26,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class CoinPanelManager extends JPanel {
 
+    private final HashMap<Integer, Coin> coinsStorage;
     private final JLabel insertMoneyLabel;
     private final JPanel moneyPanel;
     private final JLabel moneyInserted;
     private final JButton cancelTransactionButton;
     private final OnActionCallback callback;
 
-    public CoinPanelManager(OnActionCallback callback) {
+    public CoinPanelManager(HashMap<Integer, Coin> coinsStorage, OnActionCallback callback) {
+        this.coinsStorage = coinsStorage;
         this.callback = callback;
         insertMoneyLabel = new JLabel();
         moneyPanel = new JPanel(new GridBagLayout());
@@ -75,87 +79,107 @@ public class CoinPanelManager extends JPanel {
         constraints.gridy = 0;
         constraints.weightx = 0.01;
         constraints.weighty = 0.01;
+        Iterator<Map.Entry<Integer, Coin>> it = coinsStorage.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, Coin> pair = it.next();
+            try {
+                BufferedImage bufferedImageCoin = ImageIO.read(CoinPanelManager.class.getResourceAsStream(String.valueOf(pair.getKey()) + ".png"));
+                ImageIcon imageIconCoin = new ImageIcon(bufferedImageCoin);
+                imageIconCoin.setImage(imageIconCoin.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+                JButton b = new JButton();
+                b.setBorder(new EmptyBorder(1, 1, 1, 1));
+                b.setContentAreaFilled(false);
+                b.setIcon(imageIconCoin);
+                b.setActionCommand(String.valueOf(pair.getKey()));
+                b.addActionListener(coinActionListener);
+                coinsPanel.add(b, constraints);
+                constraints.gridx++;
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
 
-        BufferedImage bufferedImage10c = null;
-        BufferedImage bufferedImage20c = null;
-        BufferedImage bufferedImage50c = null;
-        BufferedImage bufferedImage1e = null;
-        BufferedImage bufferedImage2e = null;
-
-        try {
-            bufferedImage10c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("10c.png"));
-            bufferedImage20c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("20c.png"));
-            bufferedImage50c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("50c.png"));
-            bufferedImage1e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("1e.png"));
-            bufferedImage2e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("2e.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
         }
-
-        assert bufferedImage10c != null;
-        assert bufferedImage20c != null;
-        assert bufferedImage50c != null;
-        assert bufferedImage1e != null;
-        assert bufferedImage2e != null;
-
-        ImageIcon imageIcon10c = new ImageIcon(bufferedImage10c);
-        imageIcon10c.setImage(imageIcon10c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JButton b10c = new JButton();
-        b10c.setBorder(new EmptyBorder(1, 1, 1, 1));
-        b10c.setContentAreaFilled(false);
-        b10c.setIcon(imageIcon10c);
-        b10c.setActionCommand("0.10");
-        b10c.addActionListener(coinActionListener);
-
-        ImageIcon imageIcon20c = new ImageIcon(bufferedImage20c);
-        imageIcon20c.setImage(imageIcon20c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JButton b20c = new JButton();
-        b20c.setBorder(new EmptyBorder(1, 1, 1, 1));
-        b20c.setContentAreaFilled(false);
-        b20c.setIcon(imageIcon20c);
-        b20c.setActionCommand("0.20");
-        b20c.addActionListener(coinActionListener);
-
-        ImageIcon imageIcon50c = new ImageIcon(bufferedImage50c);
-        imageIcon50c.setImage(imageIcon50c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JButton b50c = new JButton();
-        b50c.setBorder(new EmptyBorder(1, 1, 1, 1));
-        b50c.setContentAreaFilled(false);
-        b50c.setIcon(imageIcon50c);
-        b50c.setActionCommand("0.50");
-        b50c.addActionListener(coinActionListener);
-
-        ImageIcon imageIcon1e = new ImageIcon(bufferedImage1e);
-        imageIcon1e.setImage(imageIcon1e.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JButton b1e = new JButton();
-        b1e.setBorder(new EmptyBorder(1, 1, 1, 1));
-        b1e.setContentAreaFilled(false);
-        b1e.setIcon(imageIcon1e);
-        b1e.setActionCommand("1.00");
-        b1e.addActionListener(coinActionListener);
-
-        ImageIcon imageIcon2e = new ImageIcon(bufferedImage2e);
-        imageIcon2e.setImage(imageIcon2e.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-        JButton b2e = new JButton();
-        b2e.setBorder(new EmptyBorder(1, 1, 1, 1));
-        b2e.setContentAreaFilled(false);
-        b2e.setIcon(imageIcon2e);
-        b2e.setActionCommand("2.00");
-        b2e.addActionListener(coinActionListener);
-        coinsPanel.add(b10c, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        coinsPanel.add(b20c, constraints);
-        constraints.gridx = 2;
-        constraints.gridy = 0;
-        coinsPanel.add(b50c, constraints);
-        constraints.gridx = 3;
-        constraints.gridy = 0;
-        coinsPanel.add(b1e, constraints);
-        constraints.gridx = 4;
-        constraints.gridy = 0;
-        coinsPanel.add(b2e, constraints);
+//        BufferedImage bufferedImage10c = null;
+//        BufferedImage bufferedImage20c = null;
+//        BufferedImage bufferedImage50c = null;
+//        BufferedImage bufferedImage1e = null;
+//        BufferedImage bufferedImage2e = null;
+//
+//        try {
+//            bufferedImage10c = ImageIO.read(CoinPanelManager.class.getResourceAsStream(".png"));
+//            bufferedImage20c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("20c.png"));
+//            bufferedImage50c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("50c.png"));
+//            bufferedImage1e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("1e.png"));
+//            bufferedImage2e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("2e.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            System.exit(1);
+//        }
+//
+//        assert bufferedImage10c != null;
+//        assert bufferedImage20c != null;
+//        assert bufferedImage50c != null;
+//        assert bufferedImage1e != null;
+//        assert bufferedImage2e != null;
+//
+//        ImageIcon imageIcon10c = new ImageIcon(bufferedImage10c);
+//        imageIcon10c.setImage(imageIcon10c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+//        JButton b10c = new JButton();
+//        b10c.setBorder(new EmptyBorder(1, 1, 1, 1));
+//        b10c.setContentAreaFilled(false);
+//        b10c.setIcon(imageIcon10c);
+//        b10c.setActionCommand("0.10");
+//        b10c.addActionListener(coinActionListener);
+//
+//        ImageIcon imageIcon20c = new ImageIcon(bufferedImage20c);
+//        imageIcon20c.setImage(imageIcon20c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+//        JButton b20c = new JButton();
+//        b20c.setBorder(new EmptyBorder(1, 1, 1, 1));
+//        b20c.setContentAreaFilled(false);
+//        b20c.setIcon(imageIcon20c);
+//        b20c.setActionCommand("0.20");
+//        b20c.addActionListener(coinActionListener);
+//
+//        ImageIcon imageIcon50c = new ImageIcon(bufferedImage50c);
+//        imageIcon50c.setImage(imageIcon50c.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+//        JButton b50c = new JButton();
+//        b50c.setBorder(new EmptyBorder(1, 1, 1, 1));
+//        b50c.setContentAreaFilled(false);
+//        b50c.setIcon(imageIcon50c);
+//        b50c.setActionCommand("0.50");
+//        b50c.addActionListener(coinActionListener);
+//
+//        ImageIcon imageIcon1e = new ImageIcon(bufferedImage1e);
+//        imageIcon1e.setImage(imageIcon1e.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+//        JButton b1e = new JButton();
+//        b1e.setBorder(new EmptyBorder(1, 1, 1, 1));
+//        b1e.setContentAreaFilled(false);
+//        b1e.setIcon(imageIcon1e);
+//        b1e.setActionCommand("1.00");
+//        b1e.addActionListener(coinActionListener);
+//
+//        ImageIcon imageIcon2e = new ImageIcon(bufferedImage2e);
+//        imageIcon2e.setImage(imageIcon2e.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+//        JButton b2e = new JButton();
+//        b2e.setBorder(new EmptyBorder(1, 1, 1, 1));
+//        b2e.setContentAreaFilled(false);
+//        b2e.setIcon(imageIcon2e);
+//        b2e.setActionCommand("2.00");
+//        b2e.addActionListener(coinActionListener);
+//        coinsPanel.add(b10c, constraints);
+//        constraints.gridx = 1;
+//        constraints.gridy = 0;
+//        coinsPanel.add(b20c, constraints);
+//        constraints.gridx = 2;
+//        constraints.gridy = 0;
+//        coinsPanel.add(b50c, constraints);
+//        constraints.gridx = 3;
+//        constraints.gridy = 0;
+//        coinsPanel.add(b1e, constraints);
+//        constraints.gridx = 4;
+//        constraints.gridy = 0;
+//        coinsPanel.add(b2e, constraints);
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.PAGE_START;
         constraints.gridx = 2;
@@ -206,7 +230,7 @@ public class CoinPanelManager extends JPanel {
     private final ActionListener coinActionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            callback.onCoinInserted(Double.parseDouble(e.getActionCommand()));
+            callback.onCoinInserted(Integer.parseInt(e.getActionCommand()));
         }
     };
 

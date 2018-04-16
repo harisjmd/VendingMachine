@@ -20,7 +20,7 @@ public class Food extends Product {
 
     private int weight;
 
-    public Food(int id, String category, String name, int weight, double price) {
+    public Food(int id, int category, String name, int weight, double price) {
         super(id, category, name, price);
         this.weight = weight;
     }

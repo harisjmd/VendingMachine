@@ -20,6 +20,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public abstract class LoginDialog extends JDialog {
     private JTextField tfUsername;
@@ -49,7 +51,7 @@ public abstract class LoginDialog extends JDialog {
         cs.gridwidth = 2;
         panel.add(pfPassword, cs);
         panel.setBorder(new LineBorder(Color.GRAY));
-
+        pfPassword.addKeyListener(loginenter);
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(login);
         btnCancel = new JButton("Cancel");
@@ -67,6 +69,10 @@ public abstract class LoginDialog extends JDialog {
     }
 
     private final ActionListener login = e -> {
+        authenticate();
+    };
+
+    private void authenticate(){
         String pass = new String(pfPassword.getPassword());
         if (pass.equals("password")) {
             onAuthenticated();
@@ -77,6 +83,29 @@ public abstract class LoginDialog extends JDialog {
                     JOptionPane.ERROR_MESSAGE);
             // reset username and password
             pfPassword.setText("");
+        }
+    }
+
+    private final KeyListener loginenter = new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()){
+                case KeyEvent.VK_ENTER:{
+                    authenticate();
+                    break;
+                }
+            }
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
         }
     };
 

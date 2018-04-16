@@ -26,12 +26,12 @@ package cut.cis352.product;
  */
 public class ProductStorage {
 
-    private final int id;
-    private Product product;
+    private final String id;
+    private int product;
     private int quantity;
     private final int capacity;
 
-    public ProductStorage(int id, Product product, int quantity, int capacity) {
+    public ProductStorage(String id, int product, int quantity, int capacity) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
@@ -48,15 +48,20 @@ public class ProductStorage {
 
 
     public void refill(int amount) {
-        quantity += amount;
+        if (quantity + amount > capacity) {
+            quantity = capacity;
+        } else {
+            quantity += amount;
+        }
+
     }
 
 
-    public Product getProduct() {
+    public int getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(int product) {
         this.product = product;
     }
 
@@ -64,7 +69,7 @@ public class ProductStorage {
         return capacity;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -72,7 +77,7 @@ public class ProductStorage {
     public String toString() {
         return "ProductStorage{" +
                 "id=" + id +
-                ", product=" + product.getName() +
+                ", product=" + product +
                 ", quantity=" + quantity +
                 '}';
     }

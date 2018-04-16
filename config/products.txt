@@ -1,8 +1,8 @@
-# id, category, name, volume/weight, price
-1, drink, Coca Cola, 300, 2.00
-2, drink, 7-up, 200, 1.00
-3, food, Mars, 100, 1.00
-4, food, Lays Salt, 100, 0.8
-5, drink, Water Bottle, 400, 0.6
-6, drink, Kean Orange Juice, 550, 0.8
-7, food, Kit-Kat, 200, 1.0
+# id, category_id, name, volume/weight, price
+1, 1, Coca Cola, 300, 2.00
+2, 1, 7-up, 200, 1.00
+3, 2, Mars, 100, 1.00
+4, 2, Lays Salt, 100, 0.8
+5, 1, Water Bottle, 400, 0.6
+6, 1, Kean Orange Juice, 550, 0.8
+7, 2, Kit-Kat, 200, 1.0

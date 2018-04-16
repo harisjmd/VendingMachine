@@ -18,7 +18,7 @@ package cut.cis352.coin;
 
 public interface OnActionCallback {
 
-    void onCoinInserted(double value);
+    void onCoinInserted(int coin_id);
 
     void onTransactionCancel();
 

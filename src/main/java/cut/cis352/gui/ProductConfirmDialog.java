@@ -35,20 +35,33 @@ public abstract class ProductConfirmDialog extends JDialog implements WindowList
 
     public ProductConfirmDialog(Frame owner, String title, String message) {
         super(owner, title, true);
+
         this.message = message;
-        setLayout(new FlowLayout());
         this.confirm_btn = new JButton("Confirm");
         this.cancel_btn = new JButton("Cancel");
         this.messageLabel = new JLabel();
         setLocationRelativeTo(owner);
         setSize(300, 100);
         setVisible(false);
+
         cancel_btn.addActionListener(this);
         confirm_btn.addActionListener(this);
-        add(messageLabel);
-        add(confirm_btn);
-        add(cancel_btn);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints cs = new GridBagConstraints();
+        cs.fill = GridBagConstraints.HORIZONTAL;
+        cs.gridx = 1;
+        cs.gridy = 1;
+        cs.gridwidth = 2;
+        panel.add(messageLabel, cs);
+        JPanel bp = new JPanel();
+        bp.add(confirm_btn);
+        bp.add(cancel_btn);
+
+        getContentPane().add(panel, BorderLayout.CENTER);
+        getContentPane().add(bp, BorderLayout.PAGE_END);
         addWindowListener(this);
+        setResizable(false);
     }
 
 

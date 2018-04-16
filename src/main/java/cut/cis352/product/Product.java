@@ -29,10 +29,10 @@ public class Product {
     private final int id;
     private String name;
     private double price;
-    private String category;
+    private int category;
 
 
-    public Product(int id, String category, String name, double price) {
+    public Product(int id, int category, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -59,11 +59,11 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

@@ -21,42 +21,60 @@ import cut.cis352.coin.CoinManager;
 import cut.cis352.gui.UserGUI;
 import cut.cis352.product.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Properties;
 
 public class VendingMachine {
 
-    private final ArrayList<ProductStorage> storage;
-    private final ArrayList<Coin> coins;
+    private final HashMap<String, ProductStorage> storage;
+    private final HashMap<Integer, Coin> coinsStorage;
     private CoinManager coinManager;
     private HashMap<Integer, Product> products;
     private final ProductDispenser dispenser = new ProductDispenser();
     private UserGUI userGUI;
     private Controller controller;
+    private Properties vmProperties;
+    private Properties dbProperties;
+    private String storageFilePath;
+    private String productsFilePath;
+    private String coinsFilePath;
+    private String vmPropertiesFilePath;
+
 
     public VendingMachine() {
-        this.storage = new ArrayList<>();
+        this.storage = new HashMap<>();
         this.products = new HashMap<>();
-        this.coins = new ArrayList<>();
+        this.coinsStorage = new HashMap<>();
+        this.vmProperties = new Properties();
+        this.dbProperties = new Properties();
+
     }
 
 
-    private void init() {
-        coinManager = new CoinManager(coins);
-        controller = new Controller(storage, products, coinManager);
+    private void init() throws SQLException, ClassNotFoundException {
+        coinManager = new CoinManager(coinsStorage, coinsFilePath, vmProperties.getProperty("vm.id"));
+        controller = new Controller(
+                storage,
+                products,
+                coinManager,
+                dbProperties,
+                vmProperties,
+                storageFilePath,
+                productsFilePath,
+                vmPropertiesFilePath);
+
         userGUI = new UserGUI("VendingMachine", controller);
         userGUI.build();
+
     }
 
 
     public static void main(String[] args) {
-        if (args.length != 3) {
+        if (args.length != 4) {
             System.err.println("Not valid arguments!\nUsage:\n");
-            System.err.println("vendingmachine.jar /path/to/productsfile.txt /path/to/storagefile.txt /path/to/coins.txt");
+            System.err.println("vendingmachine.jar /path/to/productsfile.txt /path/to/storagefile.txt /path/to/coins.txt vm.properties");
             System.exit(1);
         }
 
@@ -64,16 +82,20 @@ public class VendingMachine {
         VendingMachine vm = new VendingMachine();
 
         try {
+
             vm.parseProducts(args[0]);
             vm.parseStorage(args[1]);
             vm.parseCoins(args[2]);
-
+            vm.readProperties(args[3]);
         } catch (IOException e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-
-        vm.init();
+        try {
+            vm.init();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         vm.run();
 
     }
@@ -83,6 +105,7 @@ public class VendingMachine {
         userGUI.showGui();
     }
 
+    @SuppressWarnings({"BooleanMethodIsAlwaysInverted", "ResultOfMethodCallIgnored"})
     private boolean isInt(String str) {
 
         try {
@@ -93,6 +116,7 @@ public class VendingMachine {
         }
     }
 
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "BooleanMethodIsAlwaysInverted"})
     private boolean isDouble(String str) {
 
         try {
@@ -107,7 +131,7 @@ public class VendingMachine {
         File f = new File(pathToFile);
         FileReader fr = new FileReader(f);
         BufferedReader bf = new BufferedReader(fr);
-
+        productsFilePath = pathToFile;
         String inline;
 
         while ((inline = bf.readLine()) != null) {
@@ -126,19 +150,19 @@ public class VendingMachine {
                     System.err.println("Check id or volume/weight or price is wrong formated.\nMust be int, int and double respectively. Skipping..");
                 } else {
                     Product product = null;
-                    if (prodProps[1].trim().equals("drink")) {
+                    if (prodProps[1].trim().equals("1")) {
                         product = new Drink(
                                 Integer.parseInt(prodProps[0].trim()),
-                                prodProps[1].trim(),
+                                Integer.parseInt(prodProps[1].trim()),
                                 prodProps[2].trim(),
                                 Double.parseDouble(prodProps[4].trim()),
                                 Integer.parseInt(prodProps[3].trim()));
 
 
-                    } else if (prodProps[1].trim().equals("food")) {
+                    } else if (prodProps[1].trim().equals("2")) {
                         product = new Food(
                                 Integer.parseInt(prodProps[0].trim()),
-                                prodProps[1].trim(),
+                                Integer.parseInt(prodProps[1].trim()),
                                 prodProps[2].trim(),
                                 Integer.parseInt(prodProps[3].trim()),
                                 Double.parseDouble(prodProps[4].trim()));
@@ -156,32 +180,32 @@ public class VendingMachine {
         File f = new File(pathToFile);
         FileReader fr = new FileReader(f);
         BufferedReader bf = new BufferedReader(fr);
-
+        storageFilePath = pathToFile;
         String inline;
 
         while ((inline = bf.readLine()) != null) {
 
 
             String splitted[] = inline.split(",");
-            if (splitted.length != 3 || inline.startsWith("#")) {
+            if (splitted.length != 4 || inline.startsWith("#")) {
 
                 System.err.println("Skipping line= " + inline);
 
             } else {
 
-                boolean error = ((!isInt(splitted[1].trim()) || (!isInt(splitted[2].trim()))));
+                boolean error = ((!isInt(splitted[1].trim()) || (!isInt(splitted[2].trim())) || (!isInt(splitted[3].trim()))));
 
                 if (error) {
                     System.err.println("Storage values must be int type, Skipping..");
                 } else {
 
                     ProductStorage productStorage = new ProductStorage(
-                            Integer.parseInt(splitted[0].trim()),
-                            products.get(Integer.parseInt(splitted[1].trim())),
+                            splitted[0].trim(),
+                            Integer.parseInt(splitted[1].trim()),
                             Integer.parseInt(splitted[2].trim()),
-                            5);
+                            Integer.parseInt(splitted[3].trim()));
 
-                    this.storage.add(productStorage);
+                    this.storage.put(productStorage.getId(), productStorage);
                 }
             }
         }
@@ -193,31 +217,44 @@ public class VendingMachine {
         File f = new File(pathToFile);
         FileReader fr = new FileReader(f);
         BufferedReader bf = new BufferedReader(fr);
-
+        coinsFilePath = pathToFile;
         String inline;
 
         while ((inline = bf.readLine()) != null) {
 
 
             String coinValues[] = inline.split(",");
-            if (coinValues.length != 2 || inline.startsWith("#")) {
+            if (coinValues.length != 3 || inline.startsWith("#")) {
 
                 System.err.println("Coin doesn't have all required fields.\n" + inline + "\nSkipping line..");
 
             } else {
 
-                boolean error = (!isDouble(coinValues[0].trim())) || (!isInt(coinValues[1].trim()));
+                boolean error = (!isInt(coinValues[0].trim())) || (!isDouble(coinValues[1].trim())) || (!isInt(coinValues[2].trim()));
 
                 if (error) {
-                    System.err.println("Check value or quantity is wrong formatted.\nMust be double, int respectively. Skipping..");
+                    System.err.println("Check id, value or quantity is wrong formatted.\nMust be int, double, int respectively. Skipping..");
                 } else {
 
-                    this.coins.add(new Coin(Double.parseDouble(coinValues[0].trim()), Integer.parseInt(coinValues[1].trim())));
+                    this.coinsStorage.put(Integer.parseInt(coinValues[0]), new Coin(Double.parseDouble(coinValues[1].trim()), Integer.parseInt(coinValues[2].trim())));
 
                 }
             }
         }
 
+    }
+
+
+    private void readProperties(String vmPropertiesFile) {
+        vmPropertiesFilePath = vmPropertiesFile;
+        try {
+            dbProperties.load(VendingMachine.class.getResourceAsStream("db.properties"));
+            vmProperties.load(new BufferedInputStream(new FileInputStream(vmPropertiesFile)));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+//        System.out.println(VendingMachine.class.getResourceAsStream("vm.properties").getFile());
     }
 
 }
