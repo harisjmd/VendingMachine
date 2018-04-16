@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <settings default="vendingmachine">
+    <module2copyright>
+      <element module="vendingMachine" copyright="vendingmachine" />
+    </module2copyright>
+  </settings>
+</component>

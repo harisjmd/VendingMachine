@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="vendingMachine" pattern="src:cut.cis352..*||src:cut.cis352.coin..*||src:cut.cis352.gui..*||src:cut.cis352.product..*" />
+</component>
