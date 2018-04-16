@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class UserGUI extends JFrame {
 
@@ -166,11 +167,12 @@ public class UserGUI extends JFrame {
 
         });
 
+        ClassLoader classLoader = getClass().getClassLoader();
         controller.getProducts().forEach((id, product) -> {
 
             BufferedImage bufferedImage = null;
             try {
-                bufferedImage = ImageIO.read(new File(product.getName() + ".png"));
+                bufferedImage = ImageIO.read(new File(Objects.requireNonNull(classLoader.getResource("cut/cis352/"+ product.getName() + ".png")).getFile()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
