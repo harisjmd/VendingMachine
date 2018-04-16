@@ -5,26 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f53f99d-ad3b-41b2-b346-e55e615531b4" name="Default" comment="Added .gitignore + Copyright + VendingMachine main class">
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/coins.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/products.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/storage.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/mysql/vm.mwb" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/mysql/vm.mwb.bak" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/mysql/vm.sql" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/10c.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/1e.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/20c.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/2e.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/50c.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/7-up.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Coca Cola.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Kean Orange Juice.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Kit-Kat.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Lays Salt.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Mars.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/Water Bottle.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/10c.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/10c.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/1e.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/1e.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/20c.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/20c.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/2e.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/2e.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/50c.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/50c.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/7-up.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/7-up.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Coca Cola.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Coca Cola.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Kean Orange Juice.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Kean Orange Juice.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Kit-Kat.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Kit-Kat.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Lays Salt.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Lays Salt.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Mars.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Mars.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/Water Bottle.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Water Bottle.png" />
+      <change beforePath="$PROJECT_DIR$/vendingmachine.iml" afterPath="$PROJECT_DIR$/vendingmachine.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,42 +32,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VendingMachine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#6936#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoinManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#4765#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file leaf-file-name="UserGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="169" column="62" lean-forward="false" selection-start-line="169" selection-start-column="62" selection-end-line="169" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#8034#8521#0" expanded="true" />
-                <element signature="e#8520#8521#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="175" column="36" lean-forward="true" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoinPanelManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="85" column="86" lean-forward="false" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="86" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,13 +73,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/products/Product.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/products/ProductStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
       </list>
     </option>
@@ -149,8 +126,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -162,7 +139,7 @@
             <path>
               <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
               <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
@@ -212,16 +189,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="cut" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="cut" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
@@ -235,12 +203,17 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="copyright" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/vendingmachine-1.0-jar-with-dependencies.jar" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352/gui" />
+      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352/coin" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352" />
       <recent name="$PROJECT_DIR$/config" />
@@ -259,7 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.run">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -300,6 +273,17 @@
       </option>
       <envs />
       <patterns />
+    </configuration>
+    <configuration name="run" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/vendingmachine-1.0-jar-with-dependencies.jar" />
+      <option name="PROGRAM_PARAMETERS" value="config/products.txt config/storage.txt config/coins.txt " />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs />
+      <method>
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="make package" run_configuration_type="MavenRunConfiguration" />
+      </method>
     </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
@@ -366,6 +350,10 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="JAR Application.run" />
+      <item index="1" class="java.lang.String" itemvalue="Maven.make package" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -385,28 +373,31 @@
       <workItem from="1523863242344" duration="13000" />
       <workItem from="1523863320864" duration="288000" />
       <workItem from="1523863618261" duration="504000" />
+      <workItem from="1523869992714" duration="55000" />
+      <workItem from="1523870167395" duration="2515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3930000" />
+    <option name="totallyTimeSpent" value="6500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="34" width="1920" height="1046" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -430,6 +421,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="LIMIT_HISTORY" value="false" />
     <MESSAGE value="Added .gitignore + Copyright + VendingMachine main class" />
     <option name="LAST_COMMIT_MESSAGE" value="Added .gitignore + Copyright + VendingMachine main class" />
   </component>
@@ -438,182 +430,29 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#6936#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#4765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#6936#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#4765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#6936#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#4765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#6936#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#4765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductDispenser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Display.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-342">
-          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/OnActionCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-576">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductDispenser.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Display.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/OnActionCallback.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/cut/cis352/AppTest.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -623,31 +462,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#6936#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/config/storage.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -669,41 +484,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/1e.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/gui/1e.png" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#4765#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="144">
+          <caret line="59" column="27" lean-forward="true" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="1300" column="0" lean-forward="false" selection-start-line="1300" selection-start-column="0" selection-end-line="1300" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="85" column="86" lean-forward="false" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="169" column="62" lean-forward="false" selection-start-line="169" selection-start-column="62" selection-end-line="169" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8034#8521#0" expanded="true" />
-            <element signature="e#8520#8521#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="228">
+          <caret line="175" column="36" lean-forward="true" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>

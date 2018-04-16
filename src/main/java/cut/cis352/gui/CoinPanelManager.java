@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class CoinPanelManager extends JPanel {
 
@@ -50,8 +51,8 @@ public class CoinPanelManager extends JPanel {
         moneyInserted.setForeground(Color.RED);
         moneyInserted.setBackground(Color.BLACK);
         moneyInserted.setOpaque(true);
-        moneyInserted.setSize(200,100);
-        moneyInserted.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+        moneyInserted.setSize(200, 100);
+        moneyInserted.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
     }
 
     public void build() {
@@ -61,6 +62,7 @@ public class CoinPanelManager extends JPanel {
     }
 
     private JPanel buildCoinsPanel() {
+        ClassLoader classLoader = getClass().getClassLoader();
         JPanel coinsPanel = new JPanel();
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -79,14 +81,16 @@ public class CoinPanelManager extends JPanel {
         BufferedImage bufferedImage50c = null;
         BufferedImage bufferedImage1e = null;
         BufferedImage bufferedImage2e = null;
+
         try {
-            bufferedImage10c = ImageIO.read(new File("10c.png"));
-            bufferedImage20c = ImageIO.read(new File("20c.png"));
-            bufferedImage50c = ImageIO.read(new File("50c.png"));
-            bufferedImage1e = ImageIO.read(new File("1e.png"));
-            bufferedImage2e = ImageIO.read(new File("2e.png"));
+            bufferedImage10c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("10c.png"));
+            bufferedImage20c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("20c.png"));
+            bufferedImage50c = ImageIO.read(CoinPanelManager.class.getResourceAsStream("50c.png"));
+            bufferedImage1e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("1e.png"));
+            bufferedImage2e = ImageIO.read(CoinPanelManager.class.getResourceAsStream("2e.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
 
         assert bufferedImage10c != null;

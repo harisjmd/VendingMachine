@@ -121,7 +121,7 @@ public class UserGUI extends JFrame {
         setPreferredSize(new Dimension(800, 800));
         setLayout(new GridBagLayout());
         setResizable(false);
-        this.adminGUI = new AdminGUI("Admin Dashboard",controller,this);
+        this.adminGUI = new AdminGUI("Admin Dashboard", controller, this);
     }
 
     public void build() {
@@ -167,14 +167,14 @@ public class UserGUI extends JFrame {
 
         });
 
-        ClassLoader classLoader = getClass().getClassLoader();
         controller.getProducts().forEach((id, product) -> {
 
             BufferedImage bufferedImage = null;
             try {
-                bufferedImage = ImageIO.read(new File(Objects.requireNonNull(classLoader.getResource("cut/cis352/"+ product.getName() + ".png")).getFile()));
+                bufferedImage = ImageIO.read(UserGUI.class.getResourceAsStream(product.getName() + ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
+                System.exit(1);
             }
 
             assert bufferedImage != null;
