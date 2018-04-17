@@ -22,119 +22,161 @@
 package cut.cis352;
 
 import cut.cis352.coin.CoinManager;
+import cut.cis352.coin.Transaction;
 import cut.cis352.product.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.UUID;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author charis
  */
 public class Controller {
 
+    private static final Logger LOG = LogManager.getLogger();
+    private HashMap<Integer, Transaction> transactions;
     private final ProductDispenser dispenser;
-    private final HashMap<String, ProductStorage> storage;
+    private HashMap<String, ProductStorage> storage;
     private CoinManager coinManager;
-    private final HashMap<Integer, Product> products;
+    private HashMap<Integer, Product> products;
     private final MySQLDriver driver;
     private Properties vmProperties;
     private String vm_id;
+    private boolean wasConnected;
     private final String storageFilePath;
     private final String productsFilePath;
     private final String vmPropertiesFilePath;
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
 
-    public Controller(HashMap<String, ProductStorage> storage, HashMap<Integer, Product> products, CoinManager coinManager, Properties dbProperties, Properties vmProperties, String storageFilePath, String productsFilePath, String vmPropertiesFilePath) throws SQLException, ClassNotFoundException {
+    public Controller(HashMap<String, ProductStorage> storage, HashMap<Integer, Product> products, CoinManager coinManager, Properties dbProperties, Properties vmProperties, String storageFilePath, String productsFilePath, String vmPropertiesFilePath) throws SQLException {
+
         this.driver = new MySQLDriver(dbProperties);
+        this.dispenser = new ProductDispenser();
         this.coinManager = coinManager;
-        coinManager.setDriverInstance(driver);
+        this.coinManager.setDriverInstance(driver);
         this.storageFilePath = storageFilePath;
         this.productsFilePath = productsFilePath;
         this.vmPropertiesFilePath = vmPropertiesFilePath;
         this.vmProperties = vmProperties;
+        this.transactions = retrieveTransactions();
+        this.wasConnected = Boolean.valueOf(vmProperties.getProperty("vm.db.wasConnected"));
         this.vm_id = this.vmProperties.getProperty("vm.id");
-        if (vm_id == null || vm_id.equalsIgnoreCase("")) {
-            vm_id = UUID.randomUUID().toString();
-            driver.insertVendingMachine(vm_id, this.vmProperties.getProperty("vm.location"), Boolean.valueOf(this.vmProperties.getProperty("vm.operating")), this.vmProperties.getProperty("vm.password"));
-            coinManager.setVm_id(vm_id);
-            this.storage = generateProductStoragesIDs(storage);
-            if (driver.isConnected()) {
-                this.storage.values().forEach(productStorage -> {
-                    try {
-                        driver.insertProductStorage(productStorage.getId(), vm_id, productStorage.getProduct(), productStorage.getQuantity(), productStorage.getCapacity());
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
 
-                this.getCoinManager().getCoinsStorage().forEach((id, coin) -> {
-                    try {
-                        driver.insertCoinBalance(vm_id, id, coin.getQuantity());
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+        // for first startup or vm not in db yet
+        if (vm_id == null || vm_id.equalsIgnoreCase("") || (driver.isConnected() && !driver.checkVendingMachineExistence(vm_id))) {
+            initializeForFirstStartup(storage);
+        } else {
+
+            this.storage = storage;
+
+            if (driver.isConnected()) {
+                products = driver.getAvailableProducts();
+
+                /*
+                 * if was connected to db, last time powered on, then db should have last attributes states.
+                 * Getting last states from db, products storage + coins storage + vm properties
+                 *
+                 * */
+                if (wasConnected) {
+                    this.coinManager.setCoinsStorage(driver.getCoinsAndCoinsStorage(vm_id));
+                    this.storage = driver.getProductStorage(vm_id);
+                    updateProperties();
+                }
+                /*
+                 * if wasn't connected to db, last time powered on, then we have to update db first with
+                 * products storage + coins storage + vm properties
+                 *
+                 * */
+                else {
+
+                    this.storage.values().forEach(productStorage -> {
+                        try {
+                            driver.updateStorage(productStorage.getId(), productStorage.getProduct(), productStorage.getQuantity());
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    this.coinManager.getCoinsStorage().forEach((id, coin) -> {
+                        try {
+                            driver.updateCoinQuantity(vm_id, id, coin.getQuantity());
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    driver.updateVendingMachine(
+                            vm_id,
+                            vmProperties.getProperty("vm.location"),
+                            Boolean.valueOf(vmProperties.getProperty("vm.operating")),
+                            vmProperties.getProperty("vm.password")
+                    );
+
+                    this.transactions.values().forEach(transaction -> {
+                        try {
+                            driver.insertTransaction(
+                                    transaction.getProduct_id(),
+                                    transaction.getStorage_id(),
+                                    vm_id,
+                                    transaction.getMoneyInserted(),
+                                    transaction.getChange(),
+                                    dateFormat.format(transaction.getCreated()),
+                                    transaction.getCompleted() == null ? null : dateFormat.format(transaction.getCompleted()),
+                                    transaction.isCanceled()
+
+                            );
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            System.exit(1);
+                        }
+                    });
+
+                    this.transactions = new HashMap<>();
+                    if (!saveTransactions()) {
+                        System.exit(1);
                     }
-                });
+                }
+
+                this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(true));
+            } else {
+                this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(false));
             }
 
+            this.products = products;
+
+            // save properties locally
+            if (!saveProperties()) {
+                System.exit(1);
+            }
+
+            // save product storage locally
             if (!saveStorageLocal()) {
                 System.exit(1);
             }
 
-            vmProperties.setProperty("vm.id", vm_id);
-
-            if (!saveProperties()) {
+            // save products locally
+            if (!saveProductsLocal()) {
                 System.exit(1);
             }
-        } else {
-            if (!driver.checkVendingMachineExistence(vm_id)) {
-                vm_id = UUID.randomUUID().toString();
-                driver.insertVendingMachine(vm_id, this.vmProperties.getProperty("vm.location"), Boolean.valueOf(this.vmProperties.getProperty("vm.operating")), this.vmProperties.getProperty("vm.password"));
-                coinManager.setVm_id(vm_id);
-                this.storage = generateProductStoragesIDs(storage);
-                if (driver.isConnected()) {
-                    this.storage.values().forEach(productStorage -> {
-                        try {
-                            driver.insertProductStorage(productStorage.getId(), vm_id, productStorage.getProduct(), productStorage.getQuantity(), productStorage.getCapacity());
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    });
 
-                    this.getCoinManager().getCoinsStorage().forEach((id, coin) -> {
-                        try {
-                            driver.insertCoinBalance(vm_id, id, coin.getQuantity());
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
-                if (!saveStorageLocal()) {
-                    System.exit(1);
-                }
-                vmProperties.setProperty("vm.id", vm_id);
-                if (!saveProperties()) {
-                    System.exit(1);
-                }
-            } else {
-                this.vmProperties = driver.getVendingMachine(vm_id);
-                this.storage = storage;
+            // save coins storage locally
+            if (!this.coinManager.saveCoinsStorageLocal()) {
+                System.exit(1);
             }
 
         }
-
-        this.dispenser = new ProductDispenser();
-
-        this.products = products;
-
-
     }
 
+    public DateFormat getDateFormat() {
+        return dateFormat;
+    }
 
     public String decreaseStorage(int product_id) {
         Iterator<ProductStorage> it = storage.values().iterator();
@@ -161,7 +203,7 @@ public class Controller {
         return null;
     }
 
-    private HashMap<String, ProductStorage> generateProductStoragesIDs(HashMap<String, ProductStorage> storage) {
+    private HashMap<String, ProductStorage> generateProductStorageIDs(HashMap<String, ProductStorage> storage) {
         HashMap<String, ProductStorage> toReturn = new HashMap<>();
         storage.values().forEach(productStorage -> {
             String id = UUID.nameUUIDFromBytes((productStorage.getId() + UUID.randomUUID().toString()).getBytes()).toString();
@@ -251,6 +293,144 @@ public class Controller {
         }
     }
 
+    private void initializeForFirstStartup(HashMap<String, ProductStorage> storage) throws SQLException {
+        this.vm_id = UUID.randomUUID().toString();
+        this.coinManager.setVm_id(vm_id);
+        this.storage = generateProductStorageIDs(storage);
+        this.vmProperties.setProperty("vm.id", vm_id);
+
+        // if connected to db register and save vm storage,coinsStorage
+        if (driver.isConnected()) {
+
+            driver.insertVendingMachine(vm_id, this.vmProperties.getProperty("vm.location"), Boolean.valueOf(this.vmProperties.getProperty("vm.operating")), this.vmProperties.getProperty("vm.password"));
+            this.storage.values().forEach(productStorage -> {
+                try {
+                    driver.insertProductStorage(productStorage.getId(), vm_id, productStorage.getProduct(), productStorage.getQuantity(), productStorage.getCapacity());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            this.coinManager.getCoinsStorage().forEach((id, coin) -> {
+                try {
+                    driver.insertCoinBalance(vm_id, id, coin.getQuantity());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            this.products = driver.getAvailableProducts();
+            this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(true));
+        } else {
+            this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(false));
+        }
+
+        // save new properties locally
+        if (!saveProperties()) {
+            System.exit(1);
+        }
+
+        // save new product storage locally
+        if (!saveStorageLocal()) {
+            System.exit(1);
+        }
+
+        // save new products locally
+        if (!saveProductsLocal()) {
+            System.exit(1);
+        }
+
+        // save new coins storage locally
+        if (!this.coinManager.saveCoinsStorageLocal()) {
+            System.exit(1);
+        }
+    }
+
+    private HashMap<Integer, Transaction> retrieveTransactions() {
+        HashMap<Integer, Transaction> transactionsFound = new HashMap<>();
+        String filename = vmProperties.getProperty("vm.transactions_file");
+        File f = new File(filename == null || filename.equals("") ? "transactions.txt" : filename);
+        FileReader fr;
+        try {
+            fr = new FileReader(f);
+        } catch (FileNotFoundException e) {
+            return transactionsFound;
+        }
+
+        BufferedReader bf = new BufferedReader(fr);
+        String inline;
+        try {
+            while ((inline = bf.readLine()) != null) {
+
+
+                String transProps[] = inline.split(",");
+                if (transProps.length != 9 || inline.startsWith("#")) {
+
+                    LOG.warn("Transaction doesn't have all required fields.\n" + inline + "\nSkipping line..");
+
+                } else {
+
+                    Transaction transaction = null;
+                    try {
+                        transaction = new Transaction(
+                                Integer.parseInt(transProps[0].trim()),
+                                Integer.parseInt(transProps[1].trim()),
+                                transProps[2].trim(),
+                                dateFormat.parse(transProps[3].trim()),
+                                dateFormat.parse(transProps[4].trim()),
+                                Double.parseDouble(transProps[5].trim()),
+                                Double.parseDouble(transProps[6].trim()),
+                                Double.parseDouble(transProps[7].trim()),
+                                Boolean.parseBoolean(transProps[8].trim())
+                        );
+                    } catch (NumberFormatException | ParseException ex) {
+                        LOG.error(ex.getLocalizedMessage());
+                    }
+
+                    if (transaction != null) {
+                        transactionsFound.put(transaction.getId(), transaction);
+                    }
+                }
+            }
+
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return transactionsFound;
+    }
+
+    public boolean saveTransactions() {
+        String filename = vmProperties.getProperty("vm.transactions_file");
+        final StringBuilder builder = new StringBuilder();
+        transactions.forEach((id, transaction) -> {
+            builder.append(id).append(", ")
+                    .append(transaction.getProduct_id()).append(", ")
+                    .append(transaction.getStorage_id()).append(", ")
+                    .append(dateFormat.format(transaction.getCreated())).append(", ")
+                    .append(transaction.getCompleted() == null ? null : dateFormat.format(transaction.getCompleted())).append(", ")
+                    .append(transaction.getMoneyInserted()).append(", ")
+                    .append(transaction.getPrice()).append(", ")
+                    .append(transaction.getChange()).append(", ")
+                    .append(transaction.isCanceled()).append("\n");
+
+        });
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename == null || filename.equals("") ? "transactions.txt" : filename));
+            writer.write(builder.toString());
+            writer.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public HashMap<Integer, Transaction> getTransactions() {
+        return transactions;
+    }
+
     @SuppressWarnings("Duplicates")
     public boolean saveStorageLocal() {
         final StringBuilder builder = new StringBuilder();
@@ -269,6 +449,13 @@ public class Controller {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private void updateProperties() throws SQLException {
+        Properties retrieved = driver.getVendingMachine(vm_id);
+        vmProperties.setProperty("vm.location", retrieved.getProperty("vm.location"));
+        vmProperties.setProperty("vm.operating", retrieved.getProperty("vm.operating"));
+        vmProperties.setProperty("vm.password", retrieved.getProperty("vm.password"));
     }
 
 }

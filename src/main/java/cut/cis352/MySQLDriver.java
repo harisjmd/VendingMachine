@@ -30,9 +30,14 @@ public class MySQLDriver {
 
     private Connection connection;
 
-    public MySQLDriver(Properties dbProperties) throws ClassNotFoundException, SQLException {
-        Class.forName(dbProperties.getProperty("driver"));
-        this.connection = DriverManager.getConnection(dbProperties.getProperty("url"), dbProperties);
+    public MySQLDriver(Properties dbProperties) {
+        try {
+            Class.forName(dbProperties.getProperty("driver"));
+            this.connection = DriverManager.getConnection(dbProperties.getProperty("url"), dbProperties);
+        } catch (ClassNotFoundException | SQLException e) {
+            connection = null;
+        }
+
     }
 
     public boolean checkVendingMachineExistence(String id) throws SQLException {
@@ -78,13 +83,31 @@ public class MySQLDriver {
         return statement.executeUpdate() == 1;
     }
 
-    public int insertTransaction(int product_id, String vm_id, double money_received, double change) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO Transaction (`product`, `vm`,`money_received`,`change`,`created_timestamp`,`completed_timestamp`,`canceled`) VALUES (?, ?, ?, ?, NOW(),NOW(),0)", Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, product_id);
-        statement.setString(2, vm_id);
-        statement.setDouble(3, money_received);
-        statement.setDouble(4, change);
+    public int insertTransaction(int product_id, String storage_id, String vm_id, double money_received, double change, String created, String completed, boolean canceled) throws SQLException {
+        PreparedStatement statement;
+        if (storage_id == null || storage_id.equalsIgnoreCase("null")) {
+            statement = connection.prepareStatement("INSERT INTO Transaction (`product`, `vm`,`money_received`,`change`,`created_timestamp`,`completed_timestamp`,`canceled`) VALUES (?,  ?, ?, ?, ?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, product_id);
+            statement.setString(2, vm_id);
+            statement.setDouble(3, money_received);
+            statement.setDouble(4, change);
+            statement.setString(5, created);
+            statement.setString(6, completed == null ? created : completed);
+            statement.setBoolean(7, canceled);
+        } else {
+            statement = connection.prepareStatement("INSERT INTO Transaction (`product`,`storage`, `vm`,`money_received`,`change`,`created_timestamp`,`completed_timestamp`,`canceled`) VALUES (?, ?, ?, ?, ?, ?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, product_id);
+            statement.setString(2, storage_id);
+            statement.setString(3, vm_id);
+            statement.setDouble(4, money_received);
+            statement.setDouble(5, change);
+            statement.setString(6, created);
+            statement.setString(7, completed == null ? created : completed);
+            statement.setBoolean(8, canceled);
+
+        }
         statement.executeUpdate();
+
         ResultSet set = statement.getGeneratedKeys();
         if (set.next()) {
             return set.getInt(1);

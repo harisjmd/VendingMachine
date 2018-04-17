@@ -19,6 +19,8 @@ package cut.cis352.gui;
 import cut.cis352.Controller;
 import cut.cis352.coin.OnActionCallback;
 import cut.cis352.coin.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -34,11 +36,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
 public class UserGUI extends JFrame {
 
+    private static final Logger LOG = LogManager.getLogger();
+
+    private final Random random = new Random();
     private final Controller controller;
     private JPanel productsPanel;
     private final CoinPanelManager coinManager;
@@ -49,7 +55,7 @@ public class UserGUI extends JFrame {
     private final LoginDialog loginDialog = new LoginDialog(this) {
         @Override
         public void onAuthenticated() {
-            System.out.println("Authenticated");
+            LOG.info("Admin Authenticated");
             adminGUI.setController(controller);
             adminGUI.build();
             loginDialog.setVisible(false);
@@ -75,16 +81,20 @@ public class UserGUI extends JFrame {
                 productsPanel.setVisible(false);
                 coinManager.setVisible(true);
                 coinManager.getMoneyInserted().setText("0.00");
-                Transaction transaction = new Transaction(selectedProductConfirmDialog.getSelectedProduct().getPrice());
+                Transaction transaction = new Transaction(selectedProductConfirmDialog.getSelectedProduct().getId(), selectedProductConfirmDialog.getSelectedProduct().getPrice());
                 controller.getCoinManager().setCurrentTransaction(transaction);
 
                 if (controller.getDriver().isConnected()) {
                     try {
                         int id = controller.getDriver().insertTransaction(
                                 selectedProductConfirmDialog.getSelectedProduct().getId(),
+                                transaction.getStorage_id(),
                                 controller.getVm_id(),
                                 controller.getCoinManager().getCurrentTransaction().getMoneyInserted(),
-                                controller.getCoinManager().getCurrentTransaction().getChange()
+                                controller.getCoinManager().getCurrentTransaction().getChange(),
+                                controller.getDateFormat().format(controller.getCoinManager().getCurrentTransaction().getCreated()),
+                                controller.getCoinManager().getCurrentTransaction().getCompleted() == null ? null : controller.getDateFormat().format(controller.getCoinManager().getCurrentTransaction().getCompleted()),
+                                controller.getCoinManager().getCurrentTransaction().isCanceled()
                         );
 
                         if (id != -1) {
@@ -94,9 +104,30 @@ public class UserGUI extends JFrame {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
+                        LOG.fatal("Failed Inserting Transaction " + transaction.getId() + " to db");
+                        System.exit(1);
                     }
+
+                    LOG.info("Inserted Transaction " + transaction.getId() + " to db");
                 } else {
-                    controller.getCoinManager().getCurrentTransaction().setId(new Random().nextInt());
+
+                    int i = random.nextInt();
+
+                    while (controller.getTransactions().containsKey(i)) {
+                        i = random.nextInt();
+                    }
+
+                    controller.getCoinManager().getCurrentTransaction().setId(i);
+                    // insert in transactions + save to transactions file
+                    controller.getTransactions().put(i, controller.getCoinManager().getCurrentTransaction());
+                    LOG.info("Inserted Transaction " + transaction.getId() + " locally");
+
+                    if (!controller.saveTransactions()) {
+                        LOG.fatal("Failed saving Transactions locally");
+                        System.exit(1);
+                    } else {
+                        LOG.info("Saved Transactions locally");
+                    }
                 }
             }
         };
@@ -104,22 +135,41 @@ public class UserGUI extends JFrame {
         dispenseProductConfirmDialog = new ProductConfirmDialog(this, "Dispense Confirmation", "Please pickup your ") {
             @Override
             public void onCancel() {
+                LOG.warn("Transaction Canceled");
                 dispenseProductConfirmDialog.setProduct(null);
                 controller.getCoinManager().getCurrentTransaction().cancel();
-                System.out.println(controller.getCoinManager().getCalculatedChangeCoins());
-                if (controller.getDriver().isConnected()){
+                controller.getCoinManager().getCurrentTransaction().setCompleted(new Date());
+                LOG.info("Change: " + controller.getCoinManager().getCalculatedChangeCoins());
+                Transaction transaction = controller.getCoinManager().getCurrentTransaction();
+                transaction.setStorage_id(null);
 
-                        Transaction transaction = controller.getCoinManager().getCurrentTransaction();
-                        try {
-                            controller.getDriver().updateTransaction(
-                                    transaction.getId(),
-                                    null,
-                                    transaction.getMoneyInserted(),
-                                    transaction.getChange(),
-                                    true);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                if (controller.getDriver().isConnected()) {
+
+                    try {
+                        controller.getDriver().updateTransaction(
+                                transaction.getId(),
+                                transaction.getStorage_id(),
+                                transaction.getMoneyInserted(),
+                                transaction.getChange(),
+                                transaction.isCanceled());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        LOG.fatal("Failed Updating Transaction " + transaction.getId() + " to db");
+                        System.exit(1);
+                    }
+
+                    LOG.info("Updated Transaction " + transaction.getId() + " to db");
+                } else {
+                    // update in transactions + save to transactions file
+                    controller.getTransactions().replace(transaction.getId(), transaction);
+                    LOG.info("Updated Transaction " + transaction.getId() + " locally");
+
+                    if (!controller.saveTransactions()) {
+                        LOG.fatal("Failed saving Transactions locally");
+                        System.exit(1);
+                    } else {
+                        LOG.info("Saved Transactions locally");
+                    }
                 }
                 selectedProductConfirmDialog.setProduct(null);
                 dispenseProductConfirmDialog.setProduct(null);
@@ -130,31 +180,44 @@ public class UserGUI extends JFrame {
 
             @Override
             public void onConfirm() {
-                System.out.println(controller.getCoinManager().getCalculatedChangeCoins());
+                LOG.info("Change: " + controller.getCoinManager().getCalculatedChangeCoins());
                 controller.getDispenser().dispense(selectedProductConfirmDialog.getSelectedProduct().getName());
                 controller.getDispenser().close();
-                String storageID = controller.decreaseStorage(selectedProductConfirmDialog.getSelectedProduct().getId());
+                controller.getCoinManager().getCurrentTransaction().setCompleted(new Date());
+                controller.getCoinManager().getCurrentTransaction().setStorage_id(controller.decreaseStorage(selectedProductConfirmDialog.getSelectedProduct().getId()));
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                Transaction transaction = controller.getCoinManager().getCurrentTransaction();
+                if (controller.getDriver().isConnected()) {
 
-                if (controller.getDriver().isConnected()){
+                    if (transaction.getStorage_id() != null) {
 
-                    if(storageID != null) {
-                        Transaction transaction = controller.getCoinManager().getCurrentTransaction();
                         try {
                             controller.getDriver().updateTransaction(
                                     transaction.getId(),
-                                    storageID,
+                                    transaction.getStorage_id(),
                                     transaction.getMoneyInserted(),
                                     transaction.getChange(),
-                                    false);
+                                    transaction.isCanceled());
                         } catch (SQLException e) {
                             e.printStackTrace();
+                            LOG.fatal("Failed saving Transactions in db");
+                            System.exit(1);
                         }
+                        LOG.info("Saved Transactions to db");
+                    }
+                } else {
+                    // update in transactions + save to transactions file
+                    controller.getTransactions().replace(transaction.getId(), transaction);
+                    if (!controller.saveTransactions()) {
+                        LOG.fatal("Failed saving Transactions locally");
+                        System.exit(1);
+                    } else {
+                        LOG.info("Saved Transactions locally");
                     }
                 }
 
@@ -279,7 +342,7 @@ public class UserGUI extends JFrame {
     private final ActionListener prodActionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(e.getActionCommand());
+            LOG.info("Selected Product: " + controller.getProducts().get(Integer.parseInt(e.getActionCommand())).getName());
             selectedProductConfirmDialog.setProduct(controller.getProducts().get(Integer.parseInt(e.getActionCommand())));
             coinManager.getInsertMoneyLabel().setText("You have selected " + selectedProductConfirmDialog.getSelectedProduct().getName() + ". Please insert: " + moneyTextFormat.format(selectedProductConfirmDialog.getSelectedProduct().getPrice()) + "€");
             selectedProductConfirmDialog.setVisible(true);
@@ -289,9 +352,8 @@ public class UserGUI extends JFrame {
     private final OnActionCallback onActionCallback = new OnActionCallback() {
         @Override
         public void onCoinInserted(int coin_id) {
-            System.out.println(coin_id);
+            LOG.info("Inserted Coin id: " + coin_id + " with value "+ controller.getCoinManager().getCoinsStorage().get(coin_id).getValue());
 
-            System.out.println(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue());
             if (controller.getCoinManager().checkCoin(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
                 controller.getCoinManager().increaseCoinQuantity(coin_id);
                 if (controller.getCoinManager().getCurrentTransaction().onCoinInserted(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
@@ -309,9 +371,9 @@ public class UserGUI extends JFrame {
 
         @Override
         public void onTransactionCancel() {
-            System.out.println("Cancelled");
+            LOG.warn("Transaction Cancelled");
             controller.getCoinManager().getCurrentTransaction().cancel();
-            if (controller.getDriver().isConnected()){
+            if (controller.getDriver().isConnected()) {
 
                 Transaction transaction = controller.getCoinManager().getCurrentTransaction();
                 try {
@@ -323,9 +385,13 @@ public class UserGUI extends JFrame {
                             true);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    LOG.fatal("Failed Updating Transaction " + transaction.getId() + " to db");
+                    System.exit(1);
                 }
+
+                LOG.info("Updated Transaction " + transaction.getId() + " to db");
             }
-            System.out.println(controller.getCoinManager().getCalculatedChangeCoins());
+            LOG.info("Change: " + controller.getCoinManager().getCalculatedChangeCoins());
             selectedProductConfirmDialog.setProduct(null);
             coinManager.setVisible(false);
             productsPanel.setVisible(true);

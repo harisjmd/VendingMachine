@@ -1226,7 +1226,8 @@ vm_id</RefColNames>
     </index>
     <key id="287" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>vm_id</ColNames>
+      <ColNames>vm_id
+coin_id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="288" parent="233" name="fk_balance_VendingMachine1">

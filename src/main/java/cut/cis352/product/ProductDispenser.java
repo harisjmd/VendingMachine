@@ -21,22 +21,26 @@
  */
 package cut.cis352.product;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  *
  * @author charis
  */
 public class ProductDispenser {
-    
+    private static final Logger LOG = LogManager.getLogger();
+
     public void open(){
-        System.out.println("Dispense OPEN");
+        LOG.info("Dispense OPEN");
     }
 
     public void dispense(String productName){
-        System.out.println("Dispense " +productName);
+        LOG.info("Dispense " +productName);
     }
     
     public void close(){
-        System.out.println("Dispense CLOSE");
+        LOG.info("Dispense CLOSE");
     }
     
     

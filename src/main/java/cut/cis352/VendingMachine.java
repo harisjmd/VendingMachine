@@ -20,6 +20,8 @@ import cut.cis352.coin.Coin;
 import cut.cis352.coin.CoinManager;
 import cut.cis352.gui.UserGUI;
 import cut.cis352.product.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -28,6 +30,7 @@ import java.util.Properties;
 
 public class VendingMachine {
 
+    private static final Logger LOG = LogManager.getLogger();
     private final HashMap<String, ProductStorage> storage;
     private final HashMap<Integer, Coin> coinsStorage;
     private CoinManager coinManager;
@@ -53,7 +56,7 @@ public class VendingMachine {
     }
 
 
-    private void init() throws SQLException, ClassNotFoundException {
+    private void init() throws SQLException {
         coinManager = new CoinManager(coinsStorage, coinsFilePath, vmProperties.getProperty("vm.id"));
         controller = new Controller(
                 storage,
@@ -67,7 +70,6 @@ public class VendingMachine {
 
         userGUI = new UserGUI("VendingMachine", controller);
         userGUI.build();
-
     }
 
 
@@ -88,12 +90,12 @@ public class VendingMachine {
             vm.parseCoins(args[2]);
             vm.readProperties(args[3]);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            LOG.fatal(e.getMessage());
             System.exit(1);
         }
         try {
             vm.init();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         vm.run();
@@ -140,14 +142,14 @@ public class VendingMachine {
             String prodProps[] = inline.split(",");
             if (prodProps.length != 5 || inline.startsWith("#")) {
 
-                System.err.println("Product doesn't have all required fields.\n" + inline + "\nSkipping line..");
+                LOG.warn("Product doesn't have all required fields.\n" + inline + "\nSkipping line..");
 
             } else {
 
                 boolean error = (!isInt(prodProps[0].trim())) || (!isInt(prodProps[3].trim()) || !isDouble(prodProps[prodProps.length - 1].trim()));
 
                 if (error) {
-                    System.err.println("Check id or volume/weight or price is wrong formated.\nMust be int, int and double respectively. Skipping..");
+                    LOG.warn("Check id or volume/weight or price is wrong formated.\nMust be int, int and double respectively. Skipping..");
                 } else {
                     Product product = null;
                     if (prodProps[1].trim().equals("1")) {
@@ -189,14 +191,14 @@ public class VendingMachine {
             String splitted[] = inline.split(",");
             if (splitted.length != 4 || inline.startsWith("#")) {
 
-                System.err.println("Skipping line= " + inline);
+                LOG.warn("Skipping line= " + inline);
 
             } else {
 
                 boolean error = ((!isInt(splitted[1].trim()) || (!isInt(splitted[2].trim())) || (!isInt(splitted[3].trim()))));
 
                 if (error) {
-                    System.err.println("Storage values must be int type, Skipping..");
+                    LOG.warn("Storage values must be int type, Skipping..");
                 } else {
 
                     ProductStorage productStorage = new ProductStorage(
@@ -226,14 +228,14 @@ public class VendingMachine {
             String coinValues[] = inline.split(",");
             if (coinValues.length != 3 || inline.startsWith("#")) {
 
-                System.err.println("Coin doesn't have all required fields.\n" + inline + "\nSkipping line..");
+                LOG.warn("Coin doesn't have all required fields.\n" + inline + "\nSkipping line..");
 
             } else {
 
                 boolean error = (!isInt(coinValues[0].trim())) || (!isDouble(coinValues[1].trim())) || (!isInt(coinValues[2].trim()));
 
                 if (error) {
-                    System.err.println("Check id, value or quantity is wrong formatted.\nMust be int, double, int respectively. Skipping..");
+                    LOG.warn("Check id, value or quantity is wrong formatted.\nMust be int, double, int respectively. Skipping..");
                 } else {
 
                     this.coinsStorage.put(Integer.parseInt(coinValues[0]), new Coin(Double.parseDouble(coinValues[1].trim()), Integer.parseInt(coinValues[2].trim())));
@@ -254,7 +256,6 @@ public class VendingMachine {
             e.printStackTrace();
             System.exit(1);
         }
-//        System.out.println(VendingMachine.class.getResourceAsStream("vm.properties").getFile());
     }
 
 }
