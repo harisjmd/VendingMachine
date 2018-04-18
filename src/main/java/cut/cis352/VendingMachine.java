@@ -70,6 +70,7 @@ public class VendingMachine {
 
         userGUI = new UserGUI("VendingMachine", controller);
         userGUI.build();
+        LOG.info("VM initialized");
     }
 
 
@@ -96,7 +97,8 @@ public class VendingMachine {
         try {
             vm.init();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
+            System.exit(1);
         }
         vm.run();
 
@@ -176,6 +178,8 @@ public class VendingMachine {
             }
         }
 
+        LOG.info("Products parsed from " + pathToFile);
+
     }
 
     private void parseStorage(String pathToFile) throws IOException {
@@ -212,6 +216,8 @@ public class VendingMachine {
             }
         }
 
+        LOG.info("Product Storage parsed from " + pathToFile);
+
 
     }
 
@@ -244,6 +250,8 @@ public class VendingMachine {
             }
         }
 
+        LOG.info("Coins Storage parsed from " + pathToFile);
+
     }
 
 
@@ -256,6 +264,7 @@ public class VendingMachine {
             e.printStackTrace();
             System.exit(1);
         }
+        LOG.info("VM properties parsed from " + vmPropertiesFile);
     }
 
 }

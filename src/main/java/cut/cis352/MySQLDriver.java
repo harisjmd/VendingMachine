@@ -34,6 +34,7 @@ public class MySQLDriver {
         try {
             Class.forName(dbProperties.getProperty("driver"));
             this.connection = DriverManager.getConnection(dbProperties.getProperty("url"), dbProperties);
+            this.connection.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
             connection = null;
         }
