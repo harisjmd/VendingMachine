@@ -1,13 +1,13 @@
 # VendingMachine
 An internet connected Vending Machine developed for a University java course
 
-##Dependencies
+## Dependencies
 
 * mysql.mysql-connector-java:6.0.6
 * org.apache.logging.log4j.log4j-api:2.9.1
 * org.apache.logging.log4j.log4j-core:2.9.1
 
-##Tools Required
+## Tools Required
 
 * Maven 3.0
 ## Build
@@ -17,7 +17,7 @@ An internet connected Vending Machine developed for a University java course
 
 3. ```mvn clean verify package ```
 
-##First Run Configuration
+## First Run Configuration
 
 1. Execute mysql/vm.sql to a desired MySQL server
 2. Execute mysql/inserts.sql to a desired MySQL server
@@ -31,7 +31,7 @@ An internet connected Vending Machine developed for a University java course
 
 For more help see example files in examples directory.
 
-##Run
+## Run
 
 ```
 vendingmachine-1.0-jar-with-dependencies.jar config/products.txt config/storage.txt config/coins.txt config/vm.properties
