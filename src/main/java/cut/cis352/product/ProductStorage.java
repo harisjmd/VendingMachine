@@ -47,7 +47,8 @@ public class ProductStorage {
     }
 
 
-    public void refill(int amount) {
+    public void refill(int product, int amount) {
+        this.product = product;
         if (quantity + amount > capacity) {
             quantity = capacity;
         } else {
@@ -56,13 +57,13 @@ public class ProductStorage {
 
     }
 
+    public void empty(){
+        quantity = 0;
+    }
+
 
     public int getProduct() {
         return product;
-    }
-
-    public void setProduct(int product) {
-        this.product = product;
     }
 
     public int getCapacity() {

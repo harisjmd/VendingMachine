@@ -15,6 +15,7 @@
   ~ limitations under the License.
   -->
 
+<!--suppress XmlUnboundNsPrefix -->
 <Configuration>
     <Appenders>
         <Console name="CONSOLE" target="SYSTEM_OUT">

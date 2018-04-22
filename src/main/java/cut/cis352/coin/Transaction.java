@@ -25,7 +25,7 @@ public class Transaction {
 
     private static final Logger LOG = LogManager.getLogger();
     private int id;
-    private int product_id;
+    private final int product_id;
     private String storage_id;
     private final Date created;
     private Date completed;

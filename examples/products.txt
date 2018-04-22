@@ -1,0 +1,7 @@
+1, 1, Coca Cola, 300, 2.0
+2, 1, 7-up, 200, 1.0
+3, 2, Mars, 100, 1.0
+4, 2, Lays Salt, 100, 0.8
+5, 1, Water Bottle, 400, 0.6
+6, 1, Kean Orange Juice, 550, 0.8
+7, 2, Kit-Kat, 200, 1.0

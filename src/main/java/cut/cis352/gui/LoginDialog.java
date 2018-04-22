@@ -24,12 +24,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public abstract class LoginDialog extends JDialog {
-    private JTextField tfUsername;
-    private JPasswordField pfPassword;
-    private JLabel lbUsername;
-    private JLabel lbPassword;
-    private JButton btnLogin;
-    private JButton btnCancel;
+    private final JPasswordField pfPassword;
 
     public LoginDialog(Frame owner) {
         super(owner, "Admin Login");
@@ -39,7 +34,7 @@ public abstract class LoginDialog extends JDialog {
         cs.fill = GridBagConstraints.HORIZONTAL;
 
 
-        lbPassword = new JLabel("Password: ");
+        JLabel lbPassword = new JLabel("Password: ");
         cs.gridx = 0;
         cs.gridy = 1;
         cs.gridwidth = 1;
@@ -51,10 +46,34 @@ public abstract class LoginDialog extends JDialog {
         cs.gridwidth = 2;
         panel.add(pfPassword, cs);
         panel.setBorder(new LineBorder(Color.GRAY));
-        pfPassword.addKeyListener(loginenter);
-        btnLogin = new JButton("Login");
+        KeyListener loginEnter = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_ENTER: {
+                        authenticate();
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+        pfPassword.addKeyListener(loginEnter);
+        JButton btnLogin = new JButton("Login");
+        ActionListener login = e -> authenticate();
         btnLogin.addActionListener(login);
-        btnCancel = new JButton("Cancel");
+        JButton btnCancel = new JButton("Cancel");
+        btnCancel.addActionListener(e -> setVisible(false));
         JPanel bp = new JPanel();
         bp.add(btnLogin);
         bp.add(btnCancel);
@@ -67,10 +86,6 @@ public abstract class LoginDialog extends JDialog {
         setLocationRelativeTo(owner);
         setVisible(false);
     }
-
-    private final ActionListener login = e -> {
-        authenticate();
-    };
 
     private void authenticate(){
         String pass = new String(pfPassword.getPassword());
@@ -86,30 +101,7 @@ public abstract class LoginDialog extends JDialog {
         }
     }
 
-    private final KeyListener loginenter = new KeyListener() {
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            switch (e.getKeyCode()){
-                case KeyEvent.VK_ENTER:{
-                    authenticate();
-                    break;
-                }
-            }
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-
-        }
-    };
-
-    public abstract void onAuthenticated();
+    protected abstract void onAuthenticated();
 
     public void reset(){
         pfPassword.setText("");

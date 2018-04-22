@@ -18,7 +18,7 @@ package cut.cis352.product;
 
 public class Food extends Product {
 
-    private int weight;
+    private final int weight;
 
     public Food(int id, int category, String name, int weight, double price) {
         super(id, category, name, price);
@@ -29,7 +29,4 @@ public class Food extends Product {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
 }

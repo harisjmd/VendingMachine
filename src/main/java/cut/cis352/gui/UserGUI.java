@@ -46,7 +46,7 @@ public class UserGUI extends JFrame {
 
     private final Random random = new Random();
     private final Controller controller;
-    private JPanel productsPanel;
+    private final JPanel productsPanel;
     private final CoinPanelManager coinManager;
     private ProductConfirmDialog selectedProductConfirmDialog;
     private ProductConfirmDialog dispenseProductConfirmDialog;
@@ -56,8 +56,11 @@ public class UserGUI extends JFrame {
         @Override
         public void onAuthenticated() {
             LOG.info("Admin Authenticated");
-            adminGUI.setController(controller);
-            adminGUI.build();
+//            adminGUI.setController(controller);
+            adminGUI.rebuildCoinsPanel();
+            adminGUI.rebuildProductsStoragePanel();
+            adminGUI.setVisible(true);
+            hid();
             loginDialog.setVisible(false);
             loginDialog.reset();
 
@@ -69,6 +72,55 @@ public class UserGUI extends JFrame {
         this.controller = controller;
 
         productsPanel = new JPanel();
+        OnActionCallback onActionCallback = new OnActionCallback() {
+            @Override
+            public void onCoinInserted(int coin_id) {
+                LOG.info("Inserted Coin id: " + coin_id + " with value " + controller.getCoinManager().getCoinsStorage().get(coin_id).getValue());
+
+                if (controller.getCoinManager().checkCoin(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
+                    controller.getCoinManager().increaseCoinQuantity(coin_id);
+                    if (controller.getCoinManager().getCurrentTransaction().onCoinInserted(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
+                        coinManager.getMoneyInserted().setText(String.valueOf(moneyTextFormat.format(controller.getCoinManager().getCurrentTransaction().getMoneyInserted())));
+                        controller.getDispenser().open();
+                        dispenseProductConfirmDialog.setProduct(selectedProductConfirmDialog.getSelectedProduct());
+                        dispenseProductConfirmDialog.setVisible(true);
+                    } else {
+                        coinManager.getMoneyInserted().setText(String.valueOf(moneyTextFormat.format(controller.getCoinManager().getCurrentTransaction().getMoneyInserted())));
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onTransactionCancel() {
+                LOG.warn("Transaction Cancelled");
+                controller.getCoinManager().getCurrentTransaction().cancel();
+                if (controller.getDriver().isConnected()) {
+
+                    Transaction transaction = controller.getCoinManager().getCurrentTransaction();
+                    try {
+                        controller.getDriver().updateTransaction(
+                                transaction.getId(),
+                                null,
+                                transaction.getMoneyInserted(),
+                                transaction.getChange(),
+                                true);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        LOG.fatal("Failed Updating Transaction " + transaction.getId() + " to db");
+                        System.exit(1);
+                    }
+
+                    LOG.info("Updated Transaction " + transaction.getId() + " to db");
+                }
+                LOG.info("Change: " + controller.getCoinManager().getCalculatedChangeCoins());
+                selectedProductConfirmDialog.setProduct(null);
+                coinManager.setVisible(false);
+                productsPanel.setVisible(true);
+
+            }
+        };
         coinManager = new CoinPanelManager(controller.getCoinManager().getCoinsStorage(), onActionCallback);
         selectedProductConfirmDialog = new ProductConfirmDialog(this, "Confirm Product selection", "Your selected product is ") {
             @Override
@@ -214,10 +266,7 @@ public class UserGUI extends JFrame {
                     // update in transactions + save to transactions file
                     controller.getTransactions().replace(transaction.getId(), transaction);
                     if (!controller.saveTransactions()) {
-                        LOG.fatal("Failed saving Transactions locally");
                         System.exit(1);
-                    } else {
-                        LOG.info("Saved Transactions locally");
                     }
                 }
 
@@ -225,13 +274,14 @@ public class UserGUI extends JFrame {
                 dispenseProductConfirmDialog.setProduct(null);
                 coinManager.setVisible(false);
                 productsPanel.removeAll();
-                buildProductsPanel();
+                rebuildProductsPanel();
+                revalidate();
+                doLayout();
                 productsPanel.setVisible(true);
             }
         };
 
 
-        GridLayout gridLayout = new GridLayout();
         setTitle(title);
         setEnabled(true);
         setSize(800, 800);
@@ -254,7 +304,8 @@ public class UserGUI extends JFrame {
         constraints.gridy = 0;
         constraints.weightx = 0.01;
         constraints.weighty = 0.01;
-        add(buildProductsPanel(), constraints);
+        rebuildProductsPanel();
+        add(productsPanel, constraints);
 
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -267,8 +318,9 @@ public class UserGUI extends JFrame {
 
     }
 
-    private JPanel buildProductsPanel() {
+    public void rebuildProductsPanel() {
 
+        productsPanel.removeAll();
         TitledBorder titledBorder = new TitledBorder(new LineBorder(Color.BLACK), "Please select a product");
         titledBorder.setTitlePosition(TitledBorder.ABOVE_TOP);
         productsPanel.setBorder(titledBorder);
@@ -290,7 +342,7 @@ public class UserGUI extends JFrame {
 
             BufferedImage bufferedImage = null;
             try {
-                bufferedImage = ImageIO.read(UserGUI.class.getResourceAsStream(product.getName() + ".png"));
+                bufferedImage = ImageIO.read(UserGUI.class.getResourceAsStream("p" + product.getId() + ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(1);
@@ -306,34 +358,26 @@ public class UserGUI extends JFrame {
             b.setName(product.getName());
             b.setActionCommand(String.valueOf(product.getId()));
 
-            if (quantities.get(product.getName()) > 0) {
+            if (quantities.get(product.getName()) != null && quantities.get(product.getName()) > 0) {
                 b.setEnabled(true);
                 b.setVisible(true);
                 b.addActionListener(prodActionListener);
-                b.setToolTipText(String.valueOf(moneyTextFormat.format(product.getPrice())) + " €");
+                b.setToolTipText(String.valueOf(moneyTextFormat.format(product.getPrice())) + " " + controller.getVmProperties().getProperty("vm.currency"));
                 productsPanel.add(b);
             }
 
         });
         productsPanel.setBackground(Color.lightGray);
-        productsPanel.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK), "admin");
-        productsPanel.getActionMap().put("admin", new AbstractAction() {
+        this.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK), "admin");
+        this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK), "admin");
+        this.getRootPane().getActionMap().put("admin", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.getCoinManager().getCoinsStorage().values().forEach(coin -> {
-                    System.out.println(coin.toString());
-                });
-
-                controller.getStorage().values().forEach(productStorage -> {
-                    System.out.println(productStorage.toString());
-                });
                 loginDialog.setVisible(true);
 
             }
         });
-        return productsPanel;
     }
-
 
     public void showGui() {
         setVisible(true);
@@ -344,62 +388,16 @@ public class UserGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             LOG.info("Selected Product: " + controller.getProducts().get(Integer.parseInt(e.getActionCommand())).getName());
             selectedProductConfirmDialog.setProduct(controller.getProducts().get(Integer.parseInt(e.getActionCommand())));
-            coinManager.getInsertMoneyLabel().setText("You have selected " + selectedProductConfirmDialog.getSelectedProduct().getName() + ". Please insert: " + moneyTextFormat.format(selectedProductConfirmDialog.getSelectedProduct().getPrice()) + "€");
+            coinManager.getInsertMoneyLabel().setText("You have selected " + selectedProductConfirmDialog.getSelectedProduct().getName() + ". Please insert: " + moneyTextFormat.format(selectedProductConfirmDialog.getSelectedProduct().getPrice()) + controller.getVmProperties().getProperty("vm.currency"));
             selectedProductConfirmDialog.setVisible(true);
-        }
-    };
-
-    private final OnActionCallback onActionCallback = new OnActionCallback() {
-        @Override
-        public void onCoinInserted(int coin_id) {
-            LOG.info("Inserted Coin id: " + coin_id + " with value "+ controller.getCoinManager().getCoinsStorage().get(coin_id).getValue());
-
-            if (controller.getCoinManager().checkCoin(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
-                controller.getCoinManager().increaseCoinQuantity(coin_id);
-                if (controller.getCoinManager().getCurrentTransaction().onCoinInserted(controller.getCoinManager().getCoinsStorage().get(coin_id).getValue())) {
-                    coinManager.getMoneyInserted().setText(String.valueOf(moneyTextFormat.format(controller.getCoinManager().getCurrentTransaction().getMoneyInserted())));
-                    controller.getDispenser().open();
-                    dispenseProductConfirmDialog.setProduct(selectedProductConfirmDialog.getSelectedProduct());
-                    dispenseProductConfirmDialog.setVisible(true);
-                } else {
-                    coinManager.getMoneyInserted().setText(String.valueOf(moneyTextFormat.format(controller.getCoinManager().getCurrentTransaction().getMoneyInserted())));
-                }
-
-
-            }
-        }
-
-        @Override
-        public void onTransactionCancel() {
-            LOG.warn("Transaction Cancelled");
-            controller.getCoinManager().getCurrentTransaction().cancel();
-            if (controller.getDriver().isConnected()) {
-
-                Transaction transaction = controller.getCoinManager().getCurrentTransaction();
-                try {
-                    controller.getDriver().updateTransaction(
-                            transaction.getId(),
-                            null,
-                            transaction.getMoneyInserted(),
-                            transaction.getChange(),
-                            true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    LOG.fatal("Failed Updating Transaction " + transaction.getId() + " to db");
-                    System.exit(1);
-                }
-
-                LOG.info("Updated Transaction " + transaction.getId() + " to db");
-            }
-            LOG.info("Change: " + controller.getCoinManager().getCalculatedChangeCoins());
-            selectedProductConfirmDialog.setProduct(null);
-            coinManager.setVisible(false);
-            productsPanel.setVisible(true);
-
         }
     };
 
     public LoginDialog getLoginDialog() {
         return loginDialog;
+    }
+
+    private void hid() {
+        this.setVisible(false);
     }
 }

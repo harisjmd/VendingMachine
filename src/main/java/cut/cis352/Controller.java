@@ -37,18 +37,19 @@ import java.util.*;
 /**
  * @author charis
  */
+@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class Controller {
 
     private static final Logger LOG = LogManager.getLogger();
     private HashMap<Integer, Transaction> transactions;
     private final ProductDispenser dispenser;
     private HashMap<String, ProductStorage> storage;
-    private CoinManager coinManager;
+    private final CoinManager coinManager;
     private HashMap<Integer, Product> products;
     private final MySQLDriver driver;
-    private Properties vmProperties;
+    private final Properties vmProperties;
     private String vm_id;
-    private boolean wasConnected;
+    private final boolean wasConnected;
     private final String storageFilePath;
     private final String productsFilePath;
     private final String vmPropertiesFilePath;
@@ -178,6 +179,7 @@ public class Controller {
         return dateFormat;
     }
 
+    @SuppressWarnings("WhileLoopReplaceableByForEach")
     public String decreaseStorage(int product_id) {
         Iterator<ProductStorage> it = storage.values().iterator();
 
@@ -241,6 +243,7 @@ public class Controller {
         return vm_id;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public boolean saveProperties() {
         String licence = "#\n" +
                 "# Copyright 2018 Charalampos Kozis\n" +
@@ -259,15 +262,17 @@ public class Controller {
                 "#";
         try {
             vmProperties.store(new FileWriter(vmPropertiesFilePath), licence);
+            LOG.info("Saved Properties to " + vmPropertiesFilePath);
             return true;
         } catch (IOException e) {
+            LOG.fatal("Failed to save Properties to " + vmPropertiesFilePath);
             e.printStackTrace();
             return false;
         }
     }
 
 
-    @SuppressWarnings("Duplicates")
+    @SuppressWarnings({"Duplicates", "WeakerAccess"})
     public boolean saveProductsLocal() {
         final StringBuilder builder = new StringBuilder();
         products.forEach((id, product) -> {
@@ -286,18 +291,20 @@ public class Controller {
             BufferedWriter writer = new BufferedWriter(new FileWriter(productsFilePath));
             writer.write(builder.toString());
             writer.close();
+            LOG.info("Saved Products to " + productsFilePath);
             return true;
         } catch (IOException e) {
+            LOG.fatal("Failed to save Products to " + productsFilePath);
             e.printStackTrace();
             return false;
         }
     }
 
     private void initializeForFirstStartup(HashMap<String, ProductStorage> storage) throws SQLException {
-        if(vm_id == null || vm_id.equalsIgnoreCase("")){
+        if (vm_id == null || vm_id.equalsIgnoreCase("")) {
             this.vm_id = UUID.randomUUID().toString();
             this.storage = generateProductStorageIDs(storage);
-        }else {
+        } else {
             this.storage = storage;
         }
 
@@ -311,11 +318,6 @@ public class Controller {
 
             driver.insertVendingMachine(vm_id, this.vmProperties.getProperty("vm.location"), Boolean.valueOf(this.vmProperties.getProperty("vm.operating")), this.vmProperties.getProperty("vm.password"));
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             this.storage.values().forEach(productStorage -> {
                 try {
@@ -325,11 +327,6 @@ public class Controller {
                 }
             });
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             this.coinManager.getCoinsStorage().forEach((id, coin) -> {
                 try {
@@ -339,11 +336,6 @@ public class Controller {
                 }
             });
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             this.transactions.values().forEach(transaction -> {
                 try {
@@ -448,30 +440,31 @@ public class Controller {
             e.printStackTrace();
             System.exit(1);
         }
+
+        LOG.info("Retrieved Transactions from " + f.getAbsolutePath());
         return transactionsFound;
     }
 
     public boolean saveTransactions() {
-        String filename = vmProperties.getProperty("vm.transactions_file");
+        String filename = vmProperties.getProperty("vm.transactions_file") == null || vmProperties.getProperty("vm.transactions_file").equals("") ? "transactions.txt" : vmProperties.getProperty("vm.transactions_file");
         final StringBuilder builder = new StringBuilder();
-        transactions.forEach((id, transaction) -> {
-            builder.append(id).append(", ")
-                    .append(transaction.getProduct_id()).append(", ")
-                    .append(transaction.getStorage_id()).append(", ")
-                    .append(dateFormat.format(transaction.getCreated())).append(", ")
-                    .append(transaction.getCompleted() == null ? null : dateFormat.format(transaction.getCompleted())).append(", ")
-                    .append(transaction.getMoneyInserted()).append(", ")
-                    .append(transaction.getPrice()).append(", ")
-                    .append(transaction.getChange()).append(", ")
-                    .append(transaction.isCanceled()).append("\n");
-
-        });
+        transactions.forEach((id, transaction) -> builder.append(id).append(", ")
+                .append(transaction.getProduct_id()).append(", ")
+                .append(transaction.getStorage_id()).append(", ")
+                .append(dateFormat.format(transaction.getCreated())).append(", ")
+                .append(transaction.getCompleted() == null ? null : dateFormat.format(transaction.getCompleted())).append(", ")
+                .append(transaction.getMoneyInserted()).append(", ")
+                .append(transaction.getPrice()).append(", ")
+                .append(transaction.getChange()).append(", ")
+                .append(transaction.isCanceled()).append("\n"));
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename == null || filename.equals("") ? "transactions.txt" : filename));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
             writer.write(builder.toString());
             writer.close();
+            LOG.info("Saved Transactions to " + filename);
             return true;
         } catch (IOException e) {
+            LOG.fatal("Failed to save transactions to " + filename);
             e.printStackTrace();
             return false;
         }
@@ -484,18 +477,18 @@ public class Controller {
     @SuppressWarnings("Duplicates")
     public boolean saveStorageLocal() {
         final StringBuilder builder = new StringBuilder();
-        storage.forEach((id, productStorage) -> {
-            builder.append(id).append(", ")
-                    .append(productStorage.getProduct()).append(", ")
-                    .append(productStorage.getQuantity()).append(", ")
-                    .append(productStorage.getCapacity()).append("\n");
-        });
+        storage.forEach((id, productStorage) -> builder.append(id).append(", ")
+                .append(productStorage.getProduct()).append(", ")
+                .append(productStorage.getQuantity()).append(", ")
+                .append(productStorage.getCapacity()).append("\n"));
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(storageFilePath));
             writer.write(builder.toString());
             writer.close();
+            LOG.info("Saved Product storage to " + storageFilePath);
             return true;
         } catch (IOException e) {
+            LOG.fatal("Failed to save Product storage to " + storageFilePath);
             e.printStackTrace();
             return false;
         }
@@ -508,4 +501,8 @@ public class Controller {
         vmProperties.setProperty("vm.password", retrieved.getProperty("vm.password"));
     }
 
+    @SuppressWarnings("unused")
+    public boolean wasConnected() {
+        return wasConnected;
+    }
 }

@@ -5,13 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f53f99d-ad3b-41b2-b346-e55e615531b4" name="Default" comment="Added .gitignore + Copyright + VendingMachine main class">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinRefillStorageControlDialog.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyCoinStorageDialog.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyProductStorageDialog.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductRefillStorageControlDialog.java" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Charalampos_Kozis.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Charalampos_Kozis.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/config/coins.txt" afterPath="$PROJECT_DIR$/config/coins.txt" />
+      <change beforePath="$PROJECT_DIR$/config/products.txt" afterPath="$PROJECT_DIR$/config/products.txt" />
       <change beforePath="$PROJECT_DIR$/config/storage.txt" afterPath="$PROJECT_DIR$/config/storage.txt" />
       <change beforePath="$PROJECT_DIR$/config/vm.properties" afterPath="$PROJECT_DIR$/config/vm.properties" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java" afterPath="$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/1.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c1.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/2.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c2.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/3.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c3.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/4.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c4.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/5.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c5.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/7-up.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p2.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Coca Cola.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p1.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Kean Orange Juice.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p6.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Kit-Kat.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p7.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Lays Salt.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p4.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Mars.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p3.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/Water Bottle.png" afterPath="$PROJECT_DIR$/src/main/resources/cut/cis352/gui/p5.png" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,68 +71,28 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="vm@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="vm@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="vm@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="vm: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="186" column="70" lean-forward="true" selection-start-line="186" selection-start-column="70" selection-end-line="186" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySQLDriver.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-              <folding>
-                <marker date="1524040551874" expanded="true" signature="1473:1520" ph="SELECT vm_id... VendingMachine" />
-                <marker date="1524040551874" expanded="true" signature="1808:1904" ph="INSERT INTO VendingMachine... " />
-                <marker date="1524040551874" expanded="true" signature="2324:2426" ph="INSERT INTO Storage... " />
-                <marker date="1524040551874" expanded="true" signature="2846:2915" ph="INSERT INTO balance... " />
-                <marker date="1524040551874" expanded="true" signature="3295:3410" ph="INSERT INTO Products... " />
-                <marker date="1524040551874" expanded="true" signature="4009:4157" ph="INSERT INTO Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="4617:4777" ph="INSERT INTO Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="5639:5681" ph="SELECT co FR... " />
-                <marker date="1524040551874" expanded="true" signature="5639:5721" ph="SELECT co FR... VendingMachine" />
-                <marker date="1524040551874" expanded="true" signature="6224:6301" ph="SELECT stora... Storage" />
-                <marker date="1524040551874" expanded="true" signature="6821:6907" ph="SELECT `vm_i... VendingMachine" />
-                <marker date="1524040551874" expanded="true" signature="7610:7734" ph="SELECT produ... Products" />
-                <marker date="1524040551874" expanded="true" signature="8543:8562" ph="UPDATE Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="8543:8564" ph="UPDATE Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="8543:8565" ph="UPDATE Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="8543:8678" ph="UPDATE Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="9128:9197" ph="UPDATE Transaction... " />
-                <marker date="1524040551874" expanded="true" signature="9549:9614" ph="UPDATE balance... " />
-                <marker date="1524040551874" expanded="true" signature="9985:10072" ph="UPDATE VendingMachine... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendingMachine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="67" column="33" lean-forward="true" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -112,9 +107,19 @@
       <find>Coins returned</find>
       <find>System.out.println</find>
       <find>ebeec21e-a3bf-3e8f-8b4f-1133b1d42582</find>
+      <find>productsList</find>
+      <find>confirm_btn</find>
+      <find>controller.getVmProperties().getProperty(&quot;vm.currency&quot;)</find>
+      <find>€</find>
+      <find>retr</find>
+      <find>coinid</find>
+      <find>saveProductsLocal</find>
     </findStrings>
     <replaceStrings>
       <replace>LOG.warn</replace>
+      <replace>coinStorageList</replace>
+      <replace>empty_btn</replace>
+      <replace>coinID</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -136,40 +141,46 @@
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/products/Product.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/products/ProductStorage.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_1.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java" />
         <option value="$PROJECT_DIR$/src/main/resources/cut/cis352/vm.properties" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_2.sql" />
-        <option value="$PROJECT_DIR$/config/products.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/OnActionCallback.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_3.sql" />
         <option value="$PROJECT_DIR$/mysql/inserts.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/config/coins.txt" />
-        <option value="$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties" />
-        <option value="$PROJECT_DIR$/config/storage.txt" />
-        <option value="$PROJECT_DIR$/config/vm.properties" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/z.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductDispenser.java" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
         <option value="$PROJECT_DIR$/transactions.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminStorageControlDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/RefillStorageControlDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinRefillStorageControlDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyProductStorageDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductRefillStorageControlDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyCoinStorageDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java" />
+        <option value="$PROJECT_DIR$/config/products.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java" />
+        <option value="$PROJECT_DIR$/config/vm.properties" />
+        <option value="$PROJECT_DIR$/config/storage.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -185,6 +196,12 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="NamedScopeManager">
     <order>
@@ -214,9 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,21 +241,6 @@
             <path>
               <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
               <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -249,74 +248,15 @@
               <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
-              <item name="coin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="cis352" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vendingmachine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vendingmachine" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,19 +266,20 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/target/vendingmachine-1.0-jar-with-dependencies.jar" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352" />
-      <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352/gui" />
-      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352/coin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352" />
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/src/main/java/cut/cis352" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352" />
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/src/main/resources/cut/cis352/gui" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -353,7 +294,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.run only">
+  <component name="RunManager" selected="JAR Application.run">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -508,30 +449,44 @@
       <workItem from="1523885072049" duration="31446000" />
       <workItem from="1523972042140" duration="25682000" />
       <workItem from="1524036637714" duration="4225000" />
+      <workItem from="1524041365291" duration="916000" />
+      <workItem from="1524225499248" duration="12190000" />
+      <workItem from="1524248407874" duration="13008000" />
+      <workItem from="1524261750016" duration="258000" />
+      <workItem from="1524291411582" duration="2250000" />
+      <workItem from="1524392258852" duration="7901000" />
+      <workItem from="1524402351045" duration="3725000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67853000" />
+    <option name="totallyTimeSpent" value="108101000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="34" width="1920" height="1046" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4711014" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21771611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20010673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14781217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -543,9 +498,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -553,16 +510,17 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14781217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14781217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -572,8 +530,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4711014" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21771611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20010673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -593,69 +551,32 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java</url>
-          <line>296</line>
+          <url>file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java</url>
+          <line>331</line>
           <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java</url>
-          <line>72</line>
+          <line>279</line>
           <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java</url>
+          <line>170</line>
+          <properties />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="15" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cut/cis352/AppTest.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/gui/4.png" />
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/javax/imageio/ImageIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="1300" column="0" lean-forward="false" selection-start-line="1300" selection-start-column="0" selection-end-line="1300" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/accepted_coins.txt" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_1.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_2.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5a67d0f1-0132-4bc3-8747-34d6152bd551/console_3.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -668,17 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="36">
-            <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -703,28 +613,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.balance">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.Transaction">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.Products">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.Storage">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -746,78 +635,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/logs/uot-manager.log" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductDispenser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="58" column="21" lean-forward="false" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/logs/vm.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="4014">
+          <caret line="223" column="25" lean-forward="false" selection-start-line="223" selection-start-column="25" selection-end-line="223" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java">
+    <entry file="file://$PROJECT_DIR$/mysql/vm.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3654">
-          <caret line="232" column="32" lean-forward="false" selection-start-line="232" selection-start-column="32" selection-end-line="232" selection-end-column="32" />
-          <folding>
-            <element signature="e#9641#9642#0" expanded="false" />
-            <element signature="e#9728#9729#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="80" column="40" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="44">
+          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -825,71 +661,288 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.balance">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductConfirmDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/uot-manager.log" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductDispenser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Coin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="141" column="20" lean-forward="false" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
-          <folding>
-            <element signature="e#7267#7268#0" expanded="false" />
-            <element signature="e#7302#7303#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="105" column="23" lean-forward="false" selection-start-line="105" selection-start-column="23" selection-end-line="105" selection-end-column="23" />
+        <state relative-caret-position="90">
+          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/ProductStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="68" column="4" lean-forward="false" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/products.txt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyProductStorageDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="187">
+          <caret line="96" column="111" lean-forward="false" selection-start-line="96" selection-start-column="111" selection-end-line="96" selection-end-column="111" />
+          <folding>
+            <element signature="e#3115#3154#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/ProductRefillStorageControlDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="123" column="109" lean-forward="false" selection-start-line="123" selection-start-column="109" selection-end-line="123" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/EmptyCoinStorageDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinRefillStorageControlDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="100" column="16" lean-forward="false" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/LoginDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="76" column="33" lean-forward="false" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Food.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/coin/CoinManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="68" column="18" lean-forward="false" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/AdminGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="26" column="6" lean-forward="false" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/UserGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="70" column="81" lean-forward="false" selection-start-line="70" selection-start-column="81" selection-end-line="70" selection-end-column="81" />
+          <folding>
+            <element signature="class#1912:2330" expanded="false" />
+            <element signature="method#onAuthenticated#0;class#1912:2330" expanded="false" />
+            <element signature="class#2541:5184" expanded="false" />
+            <element signature="method#onCoinInserted#0;class#2541:5184" expanded="false" />
+            <element signature="method#onTransactionCancel#0;class#2541:5184" expanded="false" />
+            <element signature="class#5338:8618" expanded="false" />
+            <element signature="method#onConfirm#0;class#5338:8618" expanded="false" />
+            <element signature="class#8664:13369" expanded="false" />
+            <element signature="method#onCancel#0;class#8664:13369" expanded="false" />
+            <element signature="method#onConfirm#0;class#8664:13369" expanded="false" />
+            <element signature="method#build#0;class#UserGUI#0" expanded="false" />
+            <element signature="method#rebuildProductsPanel#0;class#UserGUI#0" expanded="false" />
+            <element signature="e#15027#15614#0" expanded="false" />
+            <element signature="e#15659#16918#0" expanded="false" />
+            <element signature="class#17615:18333" expanded="false" />
+            <element signature="method#actionPerformed#0;class#17615:18333" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/gui/c1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/gui/CoinPanelManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="83" column="97" lean-forward="false" selection-start-line="83" selection-start-column="97" selection-end-line="83" selection-end-column="97" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="70" column="5" lean-forward="false" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql/inserts.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        <state relative-caret-position="72">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.Storage">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar!/com/mysql/cj/jdbc/result/ResultSetImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="816" column="0" lean-forward="false" selection-start-line="816" selection-start-column="0" selection-end-line="816" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/product/Drink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/products.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/storage.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ec9ca098/5a67d0f1-0132-4bc3-8747-34d6152bd551/vm.Products">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="170" column="26" lean-forward="false" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
+          <folding>
+            <marker date="1524405664740" expanded="true" signature="1512:1559" ph="SELECT vm_id... VendingMachine" />
+            <marker date="1524405664740" expanded="true" signature="1847:1943" ph="INSERT INTO VendingMachine... " />
+            <marker date="1524405664740" expanded="true" signature="2363:2465" ph="INSERT INTO Storage... " />
+            <marker date="1524405664740" expanded="true" signature="2885:2954" ph="INSERT INTO balance... " />
+            <marker date="1524405664740" expanded="true" signature="3366:3481" ph="INSERT INTO Products... " />
+            <marker date="1524405664740" expanded="true" signature="4080:4228" ph="INSERT INTO Transaction... " />
+            <marker date="1524405664740" expanded="true" signature="4688:4848" ph="INSERT INTO Transaction... " />
+            <marker date="1524405664740" expanded="true" signature="5703:5785" ph="SELECT coin_... balance" />
+            <marker date="1524405664740" expanded="true" signature="6281:6358" ph="SELECT stora... Storage" />
+            <marker date="1524405664740" expanded="true" signature="6878:6964" ph="SELECT `vm_i... VendingMachine" />
+            <marker date="1524405664740" expanded="true" signature="7660:7789" ph="SELECT produ... Products" />
+            <marker date="1524405664740" expanded="true" signature="8802:8937" ph="UPDATE Transaction... " />
+            <marker date="1524405664740" expanded="true" signature="9387:9456" ph="UPDATE Storage... " />
+            <marker date="1524405664740" expanded="true" signature="9808:9873" ph="UPDATE balance... " />
+            <marker date="1524405664740" expanded="true" signature="10244:10331" ph="UPDATE VendingMachine... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+          <folding>
+            <element signature="method#saveProperties#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/vm.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/coins.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -902,79 +955,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cut/cis352/db.properties">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/coins.txt">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="368">
+          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/storage.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="540">
+            <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/vm.properties">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        <state relative-caret-position="422">
+          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="186" column="70" lean-forward="true" selection-start-line="186" selection-start-column="70" selection-end-line="186" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/VendingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="67" column="33" lean-forward="true" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cut/cis352/MySQLDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <marker date="1524040551874" expanded="true" signature="1473:1520" ph="SELECT vm_id... VendingMachine" />
-            <marker date="1524040551874" expanded="true" signature="1808:1904" ph="INSERT INTO VendingMachine... " />
-            <marker date="1524040551874" expanded="true" signature="2324:2426" ph="INSERT INTO Storage... " />
-            <marker date="1524040551874" expanded="true" signature="2846:2915" ph="INSERT INTO balance... " />
-            <marker date="1524040551874" expanded="true" signature="3295:3410" ph="INSERT INTO Products... " />
-            <marker date="1524040551874" expanded="true" signature="4009:4157" ph="INSERT INTO Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="4617:4777" ph="INSERT INTO Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="5639:5681" ph="SELECT co FR... " />
-            <marker date="1524040551874" expanded="true" signature="5639:5721" ph="SELECT co FR... VendingMachine" />
-            <marker date="1524040551874" expanded="true" signature="6224:6301" ph="SELECT stora... Storage" />
-            <marker date="1524040551874" expanded="true" signature="6821:6907" ph="SELECT `vm_i... VendingMachine" />
-            <marker date="1524040551874" expanded="true" signature="7610:7734" ph="SELECT produ... Products" />
-            <marker date="1524040551874" expanded="true" signature="8543:8562" ph="UPDATE Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="8543:8564" ph="UPDATE Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="8543:8565" ph="UPDATE Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="8543:8678" ph="UPDATE Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="9128:9197" ph="UPDATE Transaction... " />
-            <marker date="1524040551874" expanded="true" signature="9549:9614" ph="UPDATE balance... " />
-            <marker date="1524040551874" expanded="true" signature="9985:10072" ph="UPDATE VendingMachine... " />
-          </folding>
         </state>
       </provider>
     </entry>

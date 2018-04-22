@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public abstract class ProductConfirmDialog extends JDialog implements WindowListener, ActionListener {
+abstract class ProductConfirmDialog extends JDialog implements WindowListener, ActionListener {
 
     private final JButton confirm_btn;
     private final JButton cancel_btn;
@@ -115,9 +115,9 @@ public abstract class ProductConfirmDialog extends JDialog implements WindowList
 
     }
 
-    public abstract void onCancel();
+    protected abstract void onCancel();
 
-    public abstract void onConfirm();
+    protected abstract void onConfirm();
 
     @Override
     public void actionPerformed(ActionEvent e) {

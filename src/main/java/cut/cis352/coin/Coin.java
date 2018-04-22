@@ -17,7 +17,7 @@
 package cut.cis352.coin;
 
 public class Coin {
-    private double value;
+    private final double value;
     private int quantity;
 
     public Coin(double value, int quantity) {
@@ -27,10 +27,6 @@ public class Coin {
 
     public double getValue() {
         return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
     }
 
     public int getQuantity() {
@@ -43,6 +39,11 @@ public class Coin {
     public void decreaseQuantity() {
         this.quantity--;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
 
     @Override
     public String toString() {

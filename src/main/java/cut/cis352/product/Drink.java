@@ -18,7 +18,7 @@ package cut.cis352.product;
 
 public class Drink extends Product {
 
-    private int volume;
+    private final int volume;
 
     public Drink(int id, int category, String name,  double price, int volume) {
         super(id, category, name, price);
@@ -29,7 +29,4 @@ public class Drink extends Product {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
 }

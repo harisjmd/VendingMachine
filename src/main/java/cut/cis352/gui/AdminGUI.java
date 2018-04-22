@@ -20,72 +20,148 @@ import cut.cis352.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class AdminGUI extends JFrame implements WindowListener {
+class AdminGUI extends JFrame implements WindowListener, ActionListener {
 
-    private Controller controller;
+    private final Controller controller;
     private final UserGUI userGUI;
-    private JPanel productsStoragePanel;
-    private JPanel coinsPanel;
+    private final JPanel productsStoragePanel;
+    private final JPanel coinsPanel;
+    private final HashMap<String, String> storageWithIDs;
+    private ProductRefillStorageControlDialog productRefillStorageControlDialog;
+    private CoinRefillStorageControlDialog coinRefillStorageControlDialog;
+    private EmptyProductStorageDialog emptyProductStorageDialog;
+    private EmptyCoinStorageDialog emptyCoinStorageDialog;
 
     public AdminGUI(String title, Controller controller, UserGUI userGUI) throws HeadlessException {
         super(title);
         this.controller = controller;
         this.userGUI = userGUI;
-        setSize(800, 800);
+        productsStoragePanel = new JPanel();
+        storageWithIDs = new HashMap<>();
+        productRefillStorageControlDialog = new ProductRefillStorageControlDialog(this);
+        coinRefillStorageControlDialog = new CoinRefillStorageControlDialog(this);
+        emptyCoinStorageDialog = new EmptyCoinStorageDialog(this);
+        emptyProductStorageDialog = new EmptyProductStorageDialog(this);
+        coinsPanel = new JPanel();
+        setSize(1200, 800);
         setLocation(500, 200);
         setLayout(new GridBagLayout());
         setVisible(false);
+        setResizable(false);
         addWindowListener(this);
+
+        JMenuBar menuBar;
+        JMenu menu;
+        JMenuItem menuItem;
+
+        menuBar = new JMenuBar();
+
+        menu = new JMenu("Storage");
+        menu.setMnemonic(KeyEvent.VK_1);
+        menuBar.add(menu);
+
+        menuItem = new JMenuItem("Refill");
+        menuItem.setName("PRefill");
+        menuItem.setActionCommand("PRefill");
+        menuItem.getAccessibleContext().setAccessibleDescription("Refill a Product Storage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Empty");
+        menuItem.setName("PEmpty");
+        menuItem.setActionCommand("PEmpty");
+        menuItem.getAccessibleContext().setAccessibleDescription("Empty a Product Storage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+
+        menuBar.add(menu);
+
+        menu = new JMenu("Coins");
+        menu.setMnemonic(KeyEvent.VK_2);
+        menuBar.add(menu);
+
+        menuItem = new JMenuItem("Refill");
+        menuItem.setName("CRefill");
+        menuItem.setActionCommand("CRefill");
+        menuItem.getAccessibleContext().setAccessibleDescription("Refill a Coin Storage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Empty");
+        menuItem.setName("CEmpty");
+        menuItem.setActionCommand("CEmpty");
+        menuItem.getAccessibleContext().setAccessibleDescription("Empty a Coin Storage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        setJMenuBar(menuBar);
+        build();
     }
 
 
-    public void build() {
+    private void build() {
         GridBagConstraints constraints = new GridBagConstraints();
 
-        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.weightx = 0.01;
         constraints.weighty = 0.01;
-        buildProductsStoragePanel();
+        rebuildProductsStoragePanel();
+        productsStoragePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), "Products Storage"));
         add(productsStoragePanel, constraints);
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.weightx = 0.01;
-        constraints.weighty = 0.01;
 
-        add(new JPanel(), constraints);
-        userGUI.setVisible(false);
-        setVisible(true);
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.LAST_LINE_START;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        rebuildCoinsPanel();
+        coinsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), "Coins Storage"));
+        add(coinsPanel, constraints);
 
     }
 
-    private void buildProductsStoragePanel() {
-        productsStoragePanel = new JPanel();
-        productsStoragePanel.setSize(400, 400);
-        productsStoragePanel.setPreferredSize(new Dimension(400, 400));
-        productsStoragePanel.setBackground(Color.RED);
-        GridBagLayout layout = new GridBagLayout();
-        productsStoragePanel.setLayout(layout);
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.anchor = GridBagConstraints.PAGE_START;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        controller.getStorage().values().forEach(productStorage -> {
 
-            productsStoragePanel.add(new JLabel(String.valueOf(productStorage.getId()) + ": " + controller.getProducts().get(productStorage.getProduct()).getName() + " - " + productStorage.getQuantity()), constraints);
-            constraints.gridy++;
-//            productsStoragePanel.add(temp);
+    public void rebuildProductsStoragePanel() {
+        productsStoragePanel.removeAll();
+        AtomicInteger i = new AtomicInteger(1);
+        controller.getStorage().values().forEach(productStorage -> {
+            storageWithIDs.put(String.valueOf(i.get()), productStorage.getId());
+            String s = "Storage #" + String.valueOf(i.getAndAdd(1)) + "\n" +
+                    "Product: " + controller.getProducts().get(productStorage.getProduct()).getName() + "\n" +
+                    "Quantity: " + String.valueOf(productStorage.getQuantity()) + "\n" +
+                    "Capacity: " + String.valueOf(productStorage.getCapacity());
+
+
+            JTextArea temp = new JTextArea(s, 4, 17);
+            temp.setAutoscrolls(false);
+            temp.setForeground(Color.BLACK);
+            temp.setLineWrap(true);
+            temp.setEditable(false);
+            temp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+            productsStoragePanel.add(temp);
         });
 
 
+    }
+
+    public void rebuildCoinsPanel() {
+        coinsPanel.removeAll();
+        controller.getCoinManager().getCoinsStorage().values().forEach(coin -> {
+
+            String s = "Coin " + String.valueOf(coin.getValue()) + "\n" +
+                    "Quantity: " + String.valueOf(coin.getQuantity());
+
+            JTextArea temp = new JTextArea(s, 2, 10);
+            temp.setAutoscrolls(false);
+            temp.setForeground(Color.BLUE);
+            temp.setLineWrap(true);
+            temp.setEditable(false);
+            temp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+            coinsPanel.add(temp);
+        });
     }
 
 
@@ -98,6 +174,9 @@ public class AdminGUI extends JFrame implements WindowListener {
     public void windowClosing(WindowEvent e) {
         setVisible(false);
         userGUI.setVisible(true);
+        userGUI.rebuildProductsPanel();
+        userGUI.revalidate();
+        userGUI.doLayout();
         userGUI.getLoginDialog().setVisible(false);
         userGUI.getLoginDialog().dispose();
     }
@@ -127,11 +206,26 @@ public class AdminGUI extends JFrame implements WindowListener {
 
     }
 
-    public Controller getController() {
-        return controller;
-    }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "PRefill":
+                productRefillStorageControlDialog = new ProductRefillStorageControlDialog(productRefillStorageControlDialog, controller, storageWithIDs);
+                productRefillStorageControlDialog.setVisible(true);
+                break;
+            case "CRefill":
+                coinRefillStorageControlDialog = new CoinRefillStorageControlDialog(coinRefillStorageControlDialog, controller);
+                coinRefillStorageControlDialog.setVisible(true);
+                break;
+            case "PEmpty":
+                emptyProductStorageDialog = new EmptyProductStorageDialog(emptyProductStorageDialog, controller, storageWithIDs);
+                emptyProductStorageDialog.setVisible(true);
+                break;
+            case "CEmpty":
+                emptyCoinStorageDialog = new EmptyCoinStorageDialog(emptyCoinStorageDialog, controller);
+                emptyCoinStorageDialog.setVisible(true);
+                break;
+        }
     }
 }

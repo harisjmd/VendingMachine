@@ -33,20 +33,17 @@ public class VendingMachine {
     private static final Logger LOG = LogManager.getLogger();
     private final HashMap<String, ProductStorage> storage;
     private final HashMap<Integer, Coin> coinsStorage;
-    private CoinManager coinManager;
-    private HashMap<Integer, Product> products;
-    private final ProductDispenser dispenser = new ProductDispenser();
+    private final HashMap<Integer, Product> products;
     private UserGUI userGUI;
-    private Controller controller;
-    private Properties vmProperties;
-    private Properties dbProperties;
+    private final Properties vmProperties;
+    private final Properties dbProperties;
     private String storageFilePath;
     private String productsFilePath;
     private String coinsFilePath;
     private String vmPropertiesFilePath;
 
 
-    public VendingMachine() {
+    private VendingMachine() {
         this.storage = new HashMap<>();
         this.products = new HashMap<>();
         this.coinsStorage = new HashMap<>();
@@ -57,8 +54,8 @@ public class VendingMachine {
 
 
     private void init() throws SQLException {
-        coinManager = new CoinManager(coinsStorage, coinsFilePath, vmProperties.getProperty("vm.id"));
-        controller = new Controller(
+        CoinManager coinManager = new CoinManager(coinsStorage, coinsFilePath, vmProperties.getProperty("vm.id"), vmProperties.getProperty("vm.currency"));
+        Controller controller = new Controller(
                 storage,
                 products,
                 coinManager,
@@ -151,7 +148,7 @@ public class VendingMachine {
                 boolean error = (!isInt(prodProps[0].trim())) || (!isInt(prodProps[3].trim()) || !isDouble(prodProps[prodProps.length - 1].trim()));
 
                 if (error) {
-                    LOG.warn("Check id or volume/weight or price is wrong formated.\nMust be int, int and double respectively. Skipping..");
+                    LOG.warn("Check id or volume/weight or price is wrong formatted.\nMust be int, int and double respectively. Skipping..");
                 } else {
                     Product product = null;
                     if (prodProps[1].trim().equals("1")) {
@@ -257,9 +254,12 @@ public class VendingMachine {
 
     private void readProperties(String vmPropertiesFile) {
         vmPropertiesFilePath = vmPropertiesFile;
+
         try {
             dbProperties.load(VendingMachine.class.getResourceAsStream("db.properties"));
-            vmProperties.load(new BufferedInputStream(new FileInputStream(vmPropertiesFile)));
+            InputStream stream = new FileInputStream(vmPropertiesFile);
+            InputStreamReader reader = new InputStreamReader(stream, "UTF-8");
+            vmProperties.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);

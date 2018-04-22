@@ -24,11 +24,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CoinManager {
@@ -39,10 +37,12 @@ public class CoinManager {
     private MySQLDriver driverInstance;
     private final String coinsFilePath;
     private String vm_id;
+    private final String currency;
 
-    public CoinManager(HashMap<Integer, Coin> coinsStorage, String coinsFilePath, String vm_id) {
+    public CoinManager(HashMap<Integer, Coin> coinsStorage, String coinsFilePath, String vm_id, String currency) {
         this.coinsStorage = coinsStorage;
         this.coinsFilePath = coinsFilePath;
+        this.currency = currency;
         this.acceptedCoins = new HashMap<>();
         this.vm_id = vm_id;
         getTotalMoney();
@@ -65,6 +65,7 @@ public class CoinManager {
     }
 
 
+    @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
     public double getTotalMoney() {
         AtomicReference<Double> totalM = new AtomicReference<>();
         totalM.set(0.0);
@@ -81,17 +82,18 @@ public class CoinManager {
         return acceptedCoins.containsValue(coinReceived);
     }
 
+    @SuppressWarnings("WhileLoopReplaceableByForEach")
     public int getCoinId(double coinReceived) {
-      Iterator<Map.Entry<Integer,Double>> it = acceptedCoins.entrySet().iterator();
-      while (it.hasNext()){
-          Map.Entry<Integer,Double> pair = it.next();
+        Iterator<Map.Entry<Integer, Double>> it = acceptedCoins.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, Double> pair = it.next();
 
-          if(pair.getValue() == coinReceived){
-              return pair.getKey();
-          }
-      }
+            if (pair.getValue() == coinReceived) {
+                return pair.getKey();
+            }
+        }
 
-      return  -1;
+        return -1;
     }
 
     public void increaseCoinQuantity(int coin_id) {
@@ -103,18 +105,16 @@ public class CoinManager {
                 e.printStackTrace();
             }
         }
-        if(!saveCoinsStorageLocal()){
+        if (!saveCoinsStorageLocal()) {
             System.exit(1);
         }
 
     }
 
-    @SuppressWarnings("Duplicates")
+    @SuppressWarnings({"Duplicates", "BooleanMethodIsAlwaysInverted"})
     public boolean saveCoinsStorageLocal() {
         final StringBuilder builder = new StringBuilder();
-        coinsStorage.forEach((id, coin) -> {
-            builder.append(id).append(", ").append(coin.getValue()).append(", ").append(coin.getQuantity()).append("\n");
-        });
+        coinsStorage.forEach((id, coin) -> builder.append(id).append(", ").append(coin.getValue()).append(", ").append(coin.getQuantity()).append("\n"));
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(coinsFilePath));
             writer.write(builder.toString());
@@ -128,6 +128,7 @@ public class CoinManager {
     }
 
 
+    @SuppressWarnings("UnusedAssignment")
     public String getCalculatedChangeCoins() {
         double change = getCurrentTransaction().getChange();
         if (change != 0.0) {
@@ -135,11 +136,11 @@ public class CoinManager {
             double copyChange = change * 100;
             BigDecimal bd = new BigDecimal(change);
             bd = bd.setScale(2, RoundingMode.HALF_UP);
-            String calChange = bd.doubleValue() + ". " ;
-            int s, i = 0;
+            String calChange = bd.doubleValue() + ". ";
+            int s, i;
             s = (int) copyChange / 200;
             if (s != 0 && coinsStorage.get(getCoinId(2.0)).getQuantity() > 0) {
-                calChange += "2€ x " + String.valueOf(s) + ", ";
+                calChange += "2" + currency + " x " + String.valueOf(s) + ", ";
                 copyChange -= s * 200;
                 for (i = 0; i < s; i++) {
                     coinsStorage.get(getCoinId(2.0)).decreaseQuantity();
@@ -148,7 +149,7 @@ public class CoinManager {
 
             s = (int) copyChange / 100;
             if (s != 0 && coinsStorage.get(getCoinId(1.0)).getQuantity() > 0) {
-                calChange += "1€ x " + String.valueOf(s) + ", ";
+                calChange += "1" + currency + " x " + String.valueOf(s) + ", ";
                 copyChange -= s * 100;
                 for (i = 0; i < s; i++) {
                     coinsStorage.get(getCoinId(1.0)).decreaseQuantity();
@@ -157,7 +158,7 @@ public class CoinManager {
 
             s = (int) copyChange / 50;
             if (s != 0 && coinsStorage.get(getCoinId(0.5)).getQuantity() > 0) {
-                calChange += "0.5€ x " + String.valueOf(s) + ", ";
+                calChange += "0.5" + currency + " x " + String.valueOf(s) + ", ";
                 copyChange -= s * 50;
                 for (i = 0; i < s; i++) {
                     coinsStorage.get(getCoinId(0.5)).decreaseQuantity();
@@ -166,7 +167,7 @@ public class CoinManager {
 
             s = (int) copyChange / 20;
             if (s != 0 && coinsStorage.get(getCoinId(0.2)).getQuantity() > 0) {
-                calChange += "0.2€ x " + String.valueOf(s) + ", ";
+                calChange += "0.2" + currency + " x " + String.valueOf(s) + ", ";
                 copyChange -= s * 20;
                 for (i = 0; i < s; i++) {
                     coinsStorage.get(getCoinId(0.2)).decreaseQuantity();
@@ -175,7 +176,7 @@ public class CoinManager {
 
             s = (int) copyChange / 10;
             if (s != 0 && coinsStorage.get(getCoinId(0.1)).getQuantity() > 0) {
-                calChange += "0.1€ x " + String.valueOf(s) + ", ";
+                calChange += "0.1" + currency + " x " + String.valueOf(s) + ", ";
                 copyChange -= s * 10;
                 for (i = 0; i < s; i++) {
                     coinsStorage.get(getCoinId(0.1)).decreaseQuantity();
@@ -183,11 +184,11 @@ public class CoinManager {
             }
 
 //            s = (int) copyChange / 5;
-//            if (s != 0 && coins.get(0.05).getQuantity() > 0) {
-//                calChange += "0.05€ x " + String.valueOf(s) + "\n";
+//            if (s != 0 && coinsStorage.get(getCoinId(0.05)).getQuantity() > 0) {
+//                calChange += "0.05"+currency+" x " + String.valueOf(s) + "\n";
 //                copyChange -= s * 5;
 //                for (i = 0; i < s; i++) {
-//                    coins.get(0.05).decreaseQuantity();
+//                    coinsStorage.get(getCoinId(0.05)).decreaseQuantity();
 //                }
 //            }
 

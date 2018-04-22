@@ -26,6 +26,7 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Properties;
 
+@SuppressWarnings("UnusedReturnValue")
 public class MySQLDriver {
 
     private Connection connection;
@@ -75,6 +76,7 @@ public class MySQLDriver {
         return statement.executeUpdate() == 1;
     }
 
+    @SuppressWarnings("unused")
     public boolean insertProduct(String product_name, int category, double product_price, double product_weight_vol) throws SQLException {
         PreparedStatement statement = connection.prepareStatement("INSERT INTO Products (`product_name`, `product_category`, `product_price`,`product_weight_vol`) VALUES (?, ?, ?, ?)");
         statement.setString(1, product_name);
@@ -118,7 +120,7 @@ public class MySQLDriver {
     }
 
     public HashMap<Integer, Coin> getCoinsAndCoinsStorage(String vm_id) throws SQLException {
-        HashMap<Integer, Coin> coins = null;
+        HashMap<Integer, Coin> coins;
         PreparedStatement statement = connection.prepareStatement("SELECT  coin_id, coin_value, quantity FROM balance NATURAL JOIN Coin WHERE vm_id=?");
         statement.setString(1, vm_id);
         ResultSet set = statement.executeQuery();
@@ -131,7 +133,7 @@ public class MySQLDriver {
     }
 
     public HashMap<String, ProductStorage> getProductStorage(String vm_id) throws SQLException {
-        HashMap<String, ProductStorage> productStorage = null;
+        HashMap<String, ProductStorage> productStorage;
         PreparedStatement statement = connection.prepareStatement("SELECT  storage_id, product_id, quantity, capacity FROM Storage WHERE vm_id=?");
         statement.setString(1, vm_id);
         ResultSet set = statement.executeQuery();
@@ -160,16 +162,16 @@ public class MySQLDriver {
     }
 
     public HashMap<Integer, Product> getAvailableProducts() throws SQLException {
-        HashMap<Integer, Product> availableProducts = null;
-        PreparedStatement statement = connection.prepareStatement("SELECT  product_id, product_name, category_id, product_price, product_weight_vol FROM Products NATURAL JOIN Product_Category");
+        HashMap<Integer, Product> availableProducts;
+        PreparedStatement statement = connection.prepareStatement("SELECT  product_id, product_name, product_category, product_price, product_weight_vol FROM Products NATURAL JOIN Product_Category");
         ResultSet set = statement.executeQuery();
         availableProducts = new HashMap<>();
 
         while (set.next()) {
-            if (set.getInt(3) == 1) {
-                availableProducts.put(set.getInt(1), new Drink(set.getInt(1), set.getInt(3), set.getString(2), set.getDouble(4), (int) set.getDouble(5)));
-            } else if (set.getInt(3) == 2) {
-                availableProducts.put(set.getInt(1), new Food(set.getInt(1), set.getInt(3), set.getString(2), (int) set.getDouble(5), set.getDouble(4)));
+            if (set.getInt("product_category") == 1) {
+                availableProducts.put(set.getInt("product_id"), new Drink(set.getInt("product_id"), set.getInt("product_category"), set.getString("product_name"), set.getDouble("product_price"), (int) set.getDouble("product_weight_vol")));
+            } else if (set.getInt("product_category") == 2) {
+                availableProducts.put(set.getInt("product_id"), new Food(set.getInt("product_id"), set.getInt("product_category"), set.getString("product_name"), (int) set.getDouble("product_weight_vol"), set.getDouble("product_price")));
             }
         }
 
