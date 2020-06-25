@@ -67,12 +67,12 @@ public class Controller {
         this.vmPropertiesFilePath = vmPropertiesFilePath;
         this.vmProperties = vmProperties;
         this.transactions = retrieveTransactions();
-        this.wasConnected = Boolean.valueOf(vmProperties.getProperty("vm.db.wasConnected"));
+        this.wasConnected = Boolean.parseBoolean(vmProperties.getProperty("vm.db.wasConnected"));
         this.vm_id = this.vmProperties.getProperty("vm.id");
 
         // for first startup or vm not in db yet
         if (vm_id == null || vm_id.equalsIgnoreCase("") || (driver.isConnected() && !driver.checkVendingMachineExistence(vm_id))) {
-            initializeForFirstStartup(storage);
+            initializeForFirstStartup(storage,products);
         } else {
 
             this.storage = storage;
@@ -116,7 +116,7 @@ public class Controller {
                     driver.updateVendingMachine(
                             vm_id,
                             vmProperties.getProperty("vm.location"),
-                            Boolean.valueOf(vmProperties.getProperty("vm.operating")),
+                            Boolean.parseBoolean(vmProperties.getProperty("vm.operating")),
                             vmProperties.getProperty("vm.password")
                     );
 
@@ -300,7 +300,7 @@ public class Controller {
         }
     }
 
-    private void initializeForFirstStartup(HashMap<String, ProductStorage> storage) throws SQLException {
+    private void initializeForFirstStartup(HashMap<String, ProductStorage> storage, HashMap<Integer, Product> products) throws SQLException {
         if (vm_id == null || vm_id.equalsIgnoreCase("")) {
             this.vm_id = UUID.randomUUID().toString();
             this.storage = generateProductStorageIDs(storage);
@@ -365,6 +365,7 @@ public class Controller {
             this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(true));
         } else {
             this.vmProperties.setProperty("vm.db.wasConnected", String.valueOf(false));
+            this.products = products;
         }
 
         // save new properties locally
@@ -405,7 +406,7 @@ public class Controller {
             while ((inline = bf.readLine()) != null) {
 
 
-                String transProps[] = inline.split(",");
+                String[] transProps = inline.split(",");
                 if (transProps.length != 9 || inline.startsWith("#")) {
 
                     LOG.warn("Transaction doesn't have all required fields.\n" + inline + "\nSkipping line..");
